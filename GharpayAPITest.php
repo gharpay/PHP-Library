@@ -76,12 +76,12 @@ class GharpayAPITest extends PHPUnit_Framework_TestCase{
 //    	$this->assertNotEmpty($response['gharpayOrderId']); 	
 //    }
 //   
-//    public function testNotOKCreateOrder()
-//    {
-//    	$this->cDetails['firstName']=null;
-//    	$this->setExpectedException('GharpayAPIException');    	
-//    	$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);   	   
-//    }
+   public function testNotOKCreateOrder()
+   {
+   	$this->cDetails['firstName']=null;
+   	$this->setExpectedException('GharpayAPIException');    	
+   	$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);   	   
+   }
 //	TODO : test View Order Details	
 //	 p 	ublic function testNotOkViewOrderDetails()
 //	 {
@@ -115,11 +115,11 @@ class GharpayAPITest extends PHPUnit_Framework_TestCase{
 //	 	$response=$this->gpapi->cancelOrder('GW-222-0006247-910');
 //	 	$this->assertTrue($response);
 //	 }
-	 public function testAddProductsToOrder()
-	 {
-	 	$response=$this->gpapi->addProductToOrder('GW-222-0006261-025',16999,$this->pDetails);
-	 	$this->assertTrue($response);
-	 }
+// 	 public function testAddProductsToOrder()
+// 	 {
+// 	 	$response=$this->gpapi->addProductToOrder('GW-222-0006261-025',16999,$this->pDetails);
+// 	 	$this->assertTrue($response);
+// 	 }
 	 
 //	public function testContactNoMandInACreateOrder()
 //	{

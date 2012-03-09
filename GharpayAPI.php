@@ -60,7 +60,7 @@ class GharpayAPI
         $url= $this->getUseSSL()?'https://':'http://';
         $url.= $this->_url;       
         $url.='/rest/GharpayService/'.$function;
-        //echo $url;
+        //echo $url
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HEADER,false);
         if($method=='post')
@@ -127,7 +127,7 @@ class GharpayAPI
         	}
         	// TODO : Need to ask about this to arpit;
         	else 
-        		throw new GharpayAPIException('There is an error in the server');
+        		throw new GharpayAPIException('There is an error in the server for your order. Please contact tech@gharpay.in');
         	
         }
     }
