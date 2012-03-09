@@ -1,0 +1,278 @@
+[09-Mar-2012 19:29:09] PHP Fatal error:  Call to undefined function curl_init() in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 64
+[09-Mar-2012 19:30:08] PHP Fatal error:  Call to undefined function curl_init() in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 64
+[09-Mar-2012 19:31:48] PHP Fatal error:  Call to undefined function curl_init() in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 64
+[09-Mar-2012 19:31:50] PHP Fatal error:  Call to undefined function curl_init() in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 64
+[09-Mar-2012 19:31:51] PHP Fatal error:  Call to undefined function curl_init() in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 64
+[09-Mar-2012 19:47:33] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:249
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006921-...')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 249
+[09-Mar-2012 19:49:35] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:249
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006875-...')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 249
+[09-Mar-2012 19:51:02] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:249
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006888-...')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 249
+[09-Mar-2012 19:51:07] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:249
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006888-...')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 249
+[09-Mar-2012 19:51:08] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:249
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006888-...')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 249
+[09-Mar-2012 19:51:09] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:249
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006888-...')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 249
+[09-Mar-2012 19:51:09] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:249
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006888-...')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 249
+[09-Mar-2012 19:51:10] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:249
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006888-...')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 249
+[09-Mar-2012 19:51:11] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:249
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006888-...')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 249
+[09-Mar-2012 19:51:12] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:249
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006888-...')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 249
+[09-Mar-2012 19:51:12] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:249
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006888-...')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 249
+[09-Mar-2012 19:53:28] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the Gharpay server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:249
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006888-...')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 249
+[09-Mar-2012 19:54:22] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'null' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:249
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006888-...')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 249
+[09-Mar-2012 19:55:02] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the Gharpay server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:253
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006888-...')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 253
+[09-Mar-2012 19:55:04] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the Gharpay server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:253
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006888-...')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 253
+[09-Mar-2012 19:55:07] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the Gharpay server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:253
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006888-...')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 253
+[09-Mar-2012 19:55:09] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the Gharpay server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:253
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006888-...')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 253
+[09-Mar-2012 19:57:40] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the Gharpay server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:253
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006888-...')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 253
+[09-Mar-2012 19:58:06] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the Gharpay server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:253
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006888-...')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 253
+[09-Mar-2012 20:01:58] PHP Notice:  Undefined index: errorMessage in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 247
+[09-Mar-2012 20:01:58] PHP Notice:  Undefined index: errorMessage in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 249
+[09-Mar-2012 20:01:58] PHP Notice:  Undefined index: errorCode in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 249
+[09-Mar-2012 20:01:58] PHP Fatal error:  Uncaught exception 'GharpayAPIException' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:249
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006888-...')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 249
+[09-Mar-2012 20:06:53] PHP Fatal error:  Cannot use [] for reading in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 230
+[09-Mar-2012 20:07:02] PHP Notice:  Undefined index: commission in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 232
+[09-Mar-2012 20:07:02] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 233
+[09-Mar-2012 20:07:02] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 234
+[09-Mar-2012 20:07:02] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 235
+[09-Mar-2012 20:07:02] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 236
+[09-Mar-2012 20:07:02] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 237
+[09-Mar-2012 20:07:02] PHP Notice:  Undefined index: deliveryDate in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 239
+[09-Mar-2012 20:07:02] PHP Notice:  Undefined index: reconAmount in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 242
+[09-Mar-2012 20:07:02] PHP Notice:  Undefined index: orderStatus in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 243
+[09-Mar-2012 20:07:02] PHP Notice:  Undefined index: serviceTax in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 244
+[09-Mar-2012 20:09:00] PHP Notice:  Undefined index: commission in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 232
+[09-Mar-2012 20:09:00] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 233
+[09-Mar-2012 20:09:00] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 234
+[09-Mar-2012 20:09:00] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 235
+[09-Mar-2012 20:09:00] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 236
+[09-Mar-2012 20:09:00] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 237
+[09-Mar-2012 20:09:00] PHP Notice:  Undefined index: deliveryDate in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 239
+[09-Mar-2012 20:09:00] PHP Notice:  Undefined index: reconAmount in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 242
+[09-Mar-2012 20:09:00] PHP Notice:  Undefined index: orderStatus in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 243
+[09-Mar-2012 20:09:00] PHP Notice:  Undefined index: serviceTax in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 244
+[09-Mar-2012 20:09:02] PHP Notice:  Undefined index: commission in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 232
+[09-Mar-2012 20:09:02] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 233
+[09-Mar-2012 20:09:02] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 234
+[09-Mar-2012 20:09:02] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 235
+[09-Mar-2012 20:09:02] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 236
+[09-Mar-2012 20:09:02] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 237
+[09-Mar-2012 20:09:02] PHP Notice:  Undefined index: deliveryDate in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 239
+[09-Mar-2012 20:09:02] PHP Notice:  Undefined index: reconAmount in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 242
+[09-Mar-2012 20:09:02] PHP Notice:  Undefined index: orderStatus in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 243
+[09-Mar-2012 20:09:02] PHP Notice:  Undefined index: serviceTax in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 244
+[09-Mar-2012 20:09:03] PHP Notice:  Undefined index: commission in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 232
+[09-Mar-2012 20:09:03] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 233
+[09-Mar-2012 20:09:03] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 234
+[09-Mar-2012 20:09:03] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 235
+[09-Mar-2012 20:09:03] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 236
+[09-Mar-2012 20:09:03] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 237
+[09-Mar-2012 20:09:03] PHP Notice:  Undefined index: deliveryDate in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 239
+[09-Mar-2012 20:09:03] PHP Notice:  Undefined index: reconAmount in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 242
+[09-Mar-2012 20:09:03] PHP Notice:  Undefined index: orderStatus in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 243
+[09-Mar-2012 20:09:03] PHP Notice:  Undefined index: serviceTax in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 244
+[09-Mar-2012 20:09:23] PHP Notice:  Undefined index: errorMessage in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 247
+[09-Mar-2012 20:09:23] PHP Notice:  Undefined index: errorMessage in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 249
+[09-Mar-2012 20:09:23] PHP Notice:  Undefined index: errorCode in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 249
+[09-Mar-2012 20:09:23] PHP Fatal error:  Uncaught exception 'GharpayAPIException' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:249
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('0006888')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 249
+[09-Mar-2012 20:11:47] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the Gharpay server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:253
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('0006888')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 253
+[09-Mar-2012 20:13:01] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the Gharpay server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:253
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('0006888')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 253
+[09-Mar-2012 20:13:02] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the Gharpay server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:253
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('0006888')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 253
+[09-Mar-2012 20:13:03] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the Gharpay server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:253
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('0006888')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 253
+[09-Mar-2012 20:13:03] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the Gharpay server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:253
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('0006888')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 253
+[09-Mar-2012 20:15:04] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the Gharpay server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:253
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006887-...')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 253
+[09-Mar-2012 20:17:17] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the Gharpay server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:254
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006887-...')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 254
+[09-Mar-2012 20:17:32] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the Gharpay server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:254
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006887-')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 254
+[09-Mar-2012 20:17:40] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the Gharpay server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:254
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006887-')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 254
+[09-Mar-2012 20:19:54] PHP Notice:  Undefined index: commission in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 233
+[09-Mar-2012 20:19:54] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 234
+[09-Mar-2012 20:19:54] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 235
+[09-Mar-2012 20:19:54] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 236
+[09-Mar-2012 20:19:54] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 237
+[09-Mar-2012 20:19:54] PHP Notice:  Undefined index: customerDetails in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 238
+[09-Mar-2012 20:19:54] PHP Notice:  Undefined index: deliveryDate in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 240
+[09-Mar-2012 20:19:54] PHP Notice:  Undefined index: reconAmount in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 243
+[09-Mar-2012 20:19:54] PHP Notice:  Undefined index: orderStatus in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 244
+[09-Mar-2012 20:19:54] PHP Notice:  Undefined index: serviceTax in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 245
+[09-Mar-2012 20:21:33] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the Gharpay server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:254
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006887-')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 254
+[09-Mar-2012 20:22:03] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:257
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006887-')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 257
+[09-Mar-2012 20:22:13] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the Gharpay server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:254
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006887-')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 254
+[09-Mar-2012 20:22:42] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the Gharpay server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:254
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(53): GharpayAPI->viewOrderDetails('GW-222-0006887-...')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 254
+[09-Mar-2012 20:31:25] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'null' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:286
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(59): GharpayAPI->getCityList()
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 286
+[09-Mar-2012 20:35:04] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'null' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:287
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(59): GharpayAPI->getCityList()
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 287
+[09-Mar-2012 20:37:05] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:290
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(59): GharpayAPI->getCityList()
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 290
+[09-Mar-2012 20:37:27] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:290
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(59): GharpayAPI->getCityList()
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 290
+[09-Mar-2012 20:37:28] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:290
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(59): GharpayAPI->getCityList()
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 290
+[09-Mar-2012 20:37:29] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:290
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(59): GharpayAPI->getCityList()
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 290
+[09-Mar-2012 20:37:37] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'There is an error in the server' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:290
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(59): GharpayAPI->getCityList()
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 290
+[09-Mar-2012 21:01:53] PHP Notice:  Undefined index: pincode in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 300
+[09-Mar-2012 21:04:17] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'Sorry, we currently don't serve this city.' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:304
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(59): GharpayAPI->getPincodesInCity('karimnagar')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 304
+[09-Mar-2012 21:04:22] PHP Fatal error:  Uncaught exception 'GharpayAPIException' with message 'Sorry, we currently don't serve this city.' in /home/khaja/public_html/PHP-Library/GharpayAPI.php:304
+Stack trace:
+#0 /home/khaja/public_html/PHP-Library/index.php(59): GharpayAPI->getPincodesInCity('karimnagar')
+#1 {main}
+  thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 304

@@ -75,7 +75,7 @@ class GharpayAPI
                                     'Content-Type:application/xml')
         );
         $response = curl_exec($ch);
-        var_dump($response);
+        //var_dump($response);
         if($response)
         {
         	$response_array=XML2Array::createArray($response);
@@ -87,6 +87,7 @@ class GharpayAPI
         	
         }
     }
+    
 
     public function createOrder($customerDetailsArray, $orderDetailsArray,$productDetailsArray=null, $additionalParametersArray=null)
     {
@@ -95,11 +96,11 @@ class GharpayAPI
         &&$this->validateOrderDetails($orderDetailsArray,'createOrder')
         //&&$this->validateCustomerDetails($customerDetailsArray)
         &&$this->validateAdditionalDetails($additionalParametersArray)
-        )
+        )	
         {   
         	$deliveryDate= strtotime($orderDetailsArray['deliveryDate']);
         	$deliveryDate= date('d-m-Y',$deliveryDate);
-//        	echo 'delivery Date :'.$deliveryDate;
+//        	//echo 'delivery Date :'.$deliveryDate;
         	$orderDetailsArray['deliveryDate'] = $deliveryDate; 
         	$orderDetailsArray['productDetails']=$productDetailsArray;
         	$arr = array(
@@ -113,27 +114,26 @@ class GharpayAPI
         	}        
         	$xml=Array2XML::createXML('transaction', $arr);
         	$xml=$xml->saveXML();
+        	//var_dump($xml);
         	$response_arr = $this->callGharpayAPI('createOrder','post', $xml);
-        	var_dump($response_arr);
+        	//var_dump($response_arr);
         	if(!isset($response_arr['createOrderResponse']['errorCode']))
         	{
         		$response_mod['clientOrderId']=$response_arr['createOrderResponse']['clientOrderID'];
         		$response_mod['gharpayOrderId']=$response_arr['createOrderResponse']['orderID'];
         		return $response_mod;
         	}
-        	else if(!empty($response_arr['createOrderResponse']['errorMessage'])||!empty($response_arr['createOrderResponse']['errorCode']))
+        	else if(!($response_arr['createOrderResponse']['errorMessage']=='null')||!($response_arr['createOrderResponse']['errorCode'])=='0')
         	{  
         		throw new GharpayAPIException($response_arr['createOrderResponse']['errorMessage'],$response_arr['createOrderResponse']['errorCode']);    
         	}
-        	// TODO : Need to ask about this to arpit;
         	else 
-        		throw new GharpayAPIException('There is an error in the server for your order. Please contact tech@gharpay.in');
+        		throw new GharpayAPIException('There is an error in the server');
         	
         }
     }
     
-    //TODO : Check Add Products to Order
-    public function addProductToOrder($orderID,$orderTotalAmount,$productDetailsArray)
+    public function addProductsToOrder($orderID,$orderTotalAmount,$productDetailsArray)
     {
         $arr=array();
         if($this->validateProductDetails($productDetailsArray))
@@ -145,47 +145,91 @@ class GharpayAPI
         	);
         	$xml=Array2XML::createXML('addProductsToOrder',$orderDetails);
     		$xml=$xml->saveXML();
-    		var_dump($xml);
+    		//var_dump($xml);
     		$response = $this->callGharpayAPI('addProductsToOrder','post', $xml);
-    		var_dump($response);
+    		//var_dump($response);
     		if(!isset($response['addProductsToOrderResponse']['errorCode']))
     		{
     			return $response['addProductsToOrderResponse']['result']=='true'?true:false;
     		}
-    		else if(!empty($response['addProductsToOrderResponse'])||!empty($response['addProductsToOrderResponse']['errorCode']))
+    		else if(!empty($response['addProductsToOrderResponse']['errorMessage'] 	)||!empty($response['addProductsToOrderResponse']['errorCode']))
     		{
-    			//TODO : Add validation for Null message and ) error code
     			throw new GharpayAPIException($response['addProductsToOrderResponse']['errorMessage'],$response['addProductsToOrderResponse']['errorCode']);
     		}
     		else 
         		throw new GharpayAPIException('There is an error in the server');        	
         }
     }
+    
+    
     public function viewOrderStatus($gharpayOrderId)
     {
     	$response=$this->callGharpayAPI('viewOrderStatus?orderID='.$gharpayOrderId);
+    	//var_dump($response);
    		if(!isset($response_arr['viewOrderStatusResponse']['errorCode']))	
-    	return !empty($response['viewOrderStatusResponse']['orderStatus'])?$response['viewOrderStatusResponse']['orderStatus']: null;
+    		return !empty($response['viewOrderStatusResponse']['orderStatus'])?$response['viewOrderStatusResponse']['orderStatus']: null;
+   		else if(!($response['viewOrderStatusResponse']['errorMessage']=='null')||!($response['viewOrderStatusResponse']['errorCode']=='0'))
+        {
+        		throw new GharpayAPIException($response['viewOrderStatusResponse']['errorMessage'],$response['viewOrderStatusResponse']['errorCode']);
+        }
+        else
+        	throw new GharpayAPIException('An error occured in the server');
     }
+    
+    
     public function cancelOrder($gharpayOrderId)
     {	
     	$arr['orderID']=$gharpayOrderId;
     	$xml=Array2XML::createXML('cancelOrder',$arr);
     	$xml=$xml->saveXML();
-    	var_dump($xml);
+    	//var_dump($xml);
         $response = $this->callGharpayAPI('cancelOrder','post', $xml);
-        var_dump($response);
-        return $response['cancelOrderResponse']['result']=='true' ? true : false ;
-    } 
+        //var_dump($response);
+        if(!isset($response['cancelOrderResponse']['errorCode']))
+        {
+        	return $response['cancelOrderResponse']['result']=='true' ? true : false ;
+        }
+        // TODO : check Add products to order c/p
+        else if(!($response['cancelOrderResponse']['errorMessage']=='null')||!($response['cancelOrderResponse']['errorCode']=='0'))
+        {
+        		throw new GharpayAPIException($response['cancelOrderResponse']['errorMessage'],$response['cancelOrderResponse']['errorCode']);
+        }
+        else
+        	throw new GharpayAPIException('There is an error in the server');
+    }
+
+    public function cancelProductsFromOrder($orderID,$orderTotalAmount,$productIdArray)
+    {
+    	$arr=array(
+    					'orderAmount'=>$orderTotalAmount,
+    					'orderID'=>$orderID,
+    					'productId'=>$productIdArray
+    	);
+    	$xml=Array2XML::createXML('cancelProductsFromOrder',$arr);
+    	$xml=$xml->saveXML();
+    	//echo $xml;
+    	$response=$this->callGharpayAPI('cancelProductsFromOrder','post',$xml);
+    	//($response);
+    	if(!isset($response['cancelProductsFromOrderResponse']['errorCode']))
+    	{
+    		return $response['cancelProductsFromOrderResponse']['result']=='true'?TRUE:FALSE;
+    	}
+    	else if(!($response['cancelProductsFromOrderResponse']['errorMessage']=='null')||!($response['cancelProductsFromOrderResponse']['errorCode']=='0'))
+    	{
+    		throw new GharpayAPIException($response['cancelProductsFromOrderResponse']['errorMessage'],$response['cancelProductsFromOrderResponse']['errorCode']);
+    	}
+    	else
+    		throw new GharpayAPIException('There is an error in the server');
+    	
+    }
     
     public function viewOrderDetails($gharpayOrderId)
     {
     	$response=$this->callGharpayAPI('viewOrderDetails?orderID='.$gharpayOrderId);
-    	if(!isset($response['viewOrderDetailsResponse']['return']))
-    	{
-    		throw new GharpayAPIException("Cannot retrieve Order Details, Invalid Gharpay Order ID");
-    	}
-    	else
+    	//var_dump($response);
+    	//echo sizeof($response)."\n";
+    	//echo count($response);
+    	if(!isset($response['viewOrderDetailsResponse']['errorCode']) && isset($response['viewOrderDetailsResponse']['commission']))
     	{
     		$response_mod['commission']=$response['viewOrderDetailsResponse']['commission'];
     		$response_mod['customerAddress']=$response['viewOrderDetailsResponse']['customerDetails']['address'];
@@ -193,13 +237,25 @@ class GharpayAPI
     		$response_mod['customerEmail']=$response['viewOrderDetailsResponse']['customerDetails']['email'];
     		$response_mod['customerFirstName']=$response['viewOrderDetailsResponse']['customerDetails']['firstName'];
     		$response_mod['customerLastName']=$response['viewOrderDetailsResponse']['customerDetails']['lastName'];
-    		$response_mod['customerPrefix']=$response['viewOrderDetailsResponse']['customerDetails']['customerDetails']['prefix'];
+    		//$response_mod['customerPrefix']=$response['viewOrderDetailsResponse']['customerDetails']['prefix'];
     		$response_mod['deliveryDate']=$response['viewOrderDetailsResponse']['deliveryDate'];
-    		$response_mod['executiveContactNo']=$response['viewOrderDetailsResponse']['executiveContactNo'];
-    		$response_mod['executiveName']=$response['viewOrderDetailsResponse']['executiveName'];
+    		//$response_mod['executiveContactNo']=$response['viewOrderDetailsResponse']['executiveContactNo'];
+    		//$response_mod['executiveName']=$response['viewOrderDetailsResponse']['executiveName'];
+    		$response_mod['ReconAmount']=$response['viewOrderDetailsResponse']['reconAmount'];
     		$response_mod['orderStatus']=$response['viewOrderDetailsResponse']['orderStatus'];
+    		$response_mod['serviceTax']=$response['viewOrderDetailsResponse']['serviceTax'];
     		return $response_mod;
     	}
+    	else if(isset($response['viewOrderDetailsResponse']['errorCode'])&&(!($response['viewOrderDetailsResponse']['errorMessage']=='null')||!($response['viewOrderDetailsResponse']['errorCode']=='0')))
+    	{
+    		throw new GharpayAPIException($response['viewOrderDetailsResponse']['errorMessage'],$response['viewOrderDetailsResponse']['errorCode']);
+    	}
+    	else if(!isset($response['viewOrderDetailsResponse']['commission']) && !isset($response['viewOrderDetailsResponse']['errorCode']))
+    	{
+    		throw new GharpayAPIException("There is an error in the Gharpay server");
+    	}
+    	else
+    		throw new GharpayAPIException('There is an error in the server');
     		
     }
     public function isPincodePresent($pincode)
@@ -207,32 +263,80 @@ class GharpayAPI
     	if(strlen((string)$pincode)<>6)
     		throw new InvalidArgumentException("Oops! Pincode is missing or Invalid");
     	$response = $this->callGharpayAPI('isPincodePresent?pincode='.$pincode);
-    	return isset($response['isPincodePresentPresentResponse']['result'])&&$response['isPincodePresentPresentResponse']['result'] =='true'? True : False ;
+    	if(!isset($response['isPincodePresentPresentResponse']['errorCode']))
+        {	
+    		return isset($response['isPincodePresentPresentResponse']['result'])&&$response['isPincodePresentPresentResponse']['result'] =='true'? True : False ;
+        }
+    	else if(!($response['isPincodePresentPresentResponse']['errorMessage']=='null')||!($response['isPincodePresentPresentResponse']['errorCode']=='0'))
+    	{
+    			throw new GharpayAPIException($response['isPincodePresentPresentResponse']['errorMessage'],$response['isPincodePresentPresentResponse']['errorCode']);
+    	}
+    	else
+    			throw new GharpayAPIException('There is an error in the server');
     }
     public function getCityList()
     {
     	$response = $this->callGharpayAPI('getCityList');
-    	return $response['getCityListResponse']['city'];
+    	//var_dump($response);
+    	if(!isset($response['getCityListResponse']['errorCode']))
+    	{
+    		return $resp[]=$response['getCityListResponse']['city'];
+    	}
+    	else if(!($response['getCityListResponse']['errorMessage']=='null') || !($response['getCityListResponse']['errorCode']=='0'))
+    	{
+    		throw new GharpayAPIException($response['getCityListResponse']['errorMessage'],$response['getCityListResponse']['errorCode']);
+    	}
+    	else
+    		throw new GharpayAPIException('There is an error in the server');
     	
     }
     public function getPincodesInCity($cityName)
     {
     	
     	$response = $this->callGharpayAPI('getPincodesInCity?cityName='.$cityName);
-    	return $response['getPincodesInCityResponse']['pincode'];
+    	//var_dump($response);
+    	if(!isset($response['getPincodesInCityResponse']['errorCode']))
+    	{
+    		return $resp=$response['getPincodesInCityResponse']['pincode'];
+    	}
+    	else if(!($response['getPincodesInCityResponse']['errorMessage']=='null')||!($response['getPincodesInCityResponse']['errorCode']=='0'))
+    	{
+    		throw new GharpayAPIException($response['getPincodesInCityResponse']['errorMessage'],$response['getPincodesInCityResponse']['errorCode']);
+    	}
+    	else
+    		throw new GharpayAPIException('There is an error in the server');
     	
     }
 	public function isCityPresent($cityName)
     {
     	$response = $this->callGharpayAPI('isCityPresent?cityName='.$cityName);
-    	var_dump('city :'. $cityName."\n".$response);
-    	return $response['isCityPresentResponse']['result']=='true' ? TRUE : FALSE;
+    	var_dump('city :'. $cityName."\n");
+    	var_dump($response);
+    	if(!isset($response['isCityPresentResponse']['errorCode']))
+    	{
+    		return $response['isCityPresentResponse']['result']=='true' ? TRUE : FALSE;
+    	}
+    	else if(!($response['isCityPresentResponse']['errorMessage']=='null')||!($response['isCityPresentResponse']['errorCode']=='0'))
+    	{
+    		throw new GharpayAPIException($response['isCityPresentResponse']['errorMessage'],$response['isCityPresentResponse']['errorCode']);
+    	}
+    	else
+    		throw new GharpayAPIException('There is an error in the server');
     		
     }
     public function getAllPincodes()
     {
     	$response = $this->callGharpayAPI('getAllPincodes');
-    	return $response['getAllPincodesResponse']['pincode'];
+    	if(!isset($response['getAllPincodesResponse']['errorCode']))
+    	{
+    	return $resp[]=$response['getAllPincodesResponse']['pincode'];
+    	}
+    	else if(!($response['getAllPincodesResponse']['errorMessage']=='null')||!($response['getAllPincodesResponse']['errorCode']=='0'))
+    	{
+    		throw new GharpayAPIException($response['getAllPincodesResponse']['errorMessage'],$response['getAllPincodesResponse']['errorCode']);
+    	}
+    	else
+    		throw new GharpayAPIException('There is an error in the server');
     }
     
     //Validation starts from Here
@@ -253,7 +357,6 @@ class GharpayAPI
     			throw new InvalidArgumentException('Oops! Delivery Date is older than todays date');
     		}
     	}
-    	//TODO : validate for 6 digit pincode
     	if(!isset($orderDetails['pincode'])||empty($orderDetails['pincode']) || strlen((string)$orderDetails['pincode'])<>6)
     		throw new InvalidArgumentException("Oops! Pincode is missing or Invalid");
     	if(!isset($orderDetails['orderAmount'])||empty($orderDetails['orderAmount']))
@@ -286,12 +389,12 @@ class GharpayAPI
     			&&isset($param['value'])&&!empty($param['value'])
     				)
     			{
-    				echo 'returning true';
+    				//echo 'returning true';
     				return true;			
     			}
     			else
     			{
-		    		echo('throwing exception');
+		    		//echo('throwing exception');
 		    		throw new InvalidArgumentException("Parameter Name or Value is missing in Additional Information");
     			}
     		}

@@ -5,8 +5,8 @@ ini_set('error_log', dirname('error') . '/error_log.txt');
 error_reporting(E_ALL);
 require_once 'GharpayAPI.php';
         $gpapi= new GharpayAPI();
-        $gpapi->setUsername('redbus');
-        $gpapi->setPassword('redbus');
+        $gpapi->setUsername('test_api');
+        $gpapi->setPassword('test_api');
         $gpapi->setURL('services.gharpay.in');
         $cDetails= array(
             'address' => 'Aruna towers, flat No. 302, Sangeeth Nagar, Somajiguda',
@@ -48,6 +48,17 @@ require_once 'GharpayAPI.php';
 //        var_dump($resp);
 		//$resp=$gpapi->createOrder($cDetails,$oDetails,$pDetails,$parameters);
 //		$resp=$gpapi->validDate('12.12.12');
-		$resp=$gpapi->cancelOrder('GW-222-0006247-910');
-		 var_dump($resp);
+
+         //TODO : Check View Order Details;
+//          $response=$gpapi->viewOrderDetails('GW-222-0006887-375');
+//          var_dump($response);
+         //TODO : View Order Status
+//         $response=$gpapi->viewOrderStatus('GW-222-0006887');
+//         var_dump($response);
+         //TODO : view City List;
+        // $response=$gpapi->getPincodesInCity('karimnagar');
+//       TODO : Get All Pincodes
+// 	 $resp=$gpapi->cancelOrder('GW-222-0006247-910');
+		 $response=$gpapi->isCityPresent('Karimnagar');
+		 var_dump($response);
 ?>
