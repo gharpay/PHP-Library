@@ -1,11 +1,7 @@
 <?php
-/**
- * 
- * 
- */
-//require_once DIRECTORY_SEPARATOR.'home'.DIRECTORY_SEPARATOR.'khaja'.DIRECTORY_SEPARATOR.'pear'.DIRECTORY_SEPARATOR.'share'.DIRECTORY_SEPARATOR.'pear'.DIRECTORY_SEPARATOR.'PHPUnit';
-require_once 'PHP-Library'.DIRECTORY_SEPARATOR.'GharpayAPI.php';
-class CreateOrderTest extends PHPUnit_Framework_TestCase {
+require 'PHP-Library'.DIRECTORY_SEPARATOR.'GharpayAPI.php';
+class CreateOrderTest extends PHPUnit_Framework_TestCase 
+{
 
 	private $cDetails;
 	private $oDetails;
@@ -17,9 +13,6 @@ class CreateOrderTest extends PHPUnit_Framework_TestCase {
 	public function setUp()
 	{
 		$this->gpapi= new GharpayAPI();
-		$this->gpapi->setUsername('test_api');
-		$this->gpapi->setPassword('test_api');
-		$this->gpapi->setURL('services.gharpay.in');
 		$this->cDetails= array(
 				'address' => 'Aruna towers, flat No. 302, Sangeeth Nagar, Somajiguda',
 				'contactNo'=>'8888888888',

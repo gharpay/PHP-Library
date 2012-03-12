@@ -10,6 +10,7 @@
  * @author khaja Naquiuddin khaja@gharpay.in
 
  */
+require_once 'config.php';
 require_once('GharpayAPI.php');
 class GharpayAPITest extends PHPUnit_Framework_TestCase
 {
@@ -23,8 +24,8 @@ class GharpayAPITest extends PHPUnit_Framework_TestCase
 	public function setUp()
 	{
 		$this->gpapi= new GharpayAPI();
-        $this->gpapi->setUsername('test_api');
-        $this->gpapi->setPassword('test_api');
+        $this->gpapi->setUsername(USERNAME);
+        $this->gpapi->setPassword(PASSWORD);
         $this->gpapi->setURL('services.gharpay.in');
 		$this->cDetails= array(
             'address' => 'Aruna towers, flat No. 302, Sangeeth Nagar, Somajiguda',
@@ -159,38 +160,38 @@ class GharpayAPITest extends PHPUnit_Framework_TestCase
 	 	
 // 	 }
 	 
-// /*
-//  * Test isPincodePresent
-//  */
+/*
+ * Test isPincodePresent
+ */
 	 
-// 	 public function testNotOkisPincodePresent()
-// 	 {
-// 	 	$this->setExpectedException('InvalidArgumentException');
-// 	 	$response=$this->gpapi->isPincodePresent(8787);	 		 	
-// 	 }
+	 public function testNotOkisPincodePresent()
+	 {
+	 	$this->setExpectedException('InvalidArgumentException');
+	 	$response=$this->gpapi->isPincodePresent(8787);	 		 	
+	 }
  	 
-//  	 public function testOKisPincodePresent()
-// 	 {
-// 	 	$response=$this->gpapi->isPincodePresent(500008);
-// 	 	$this->assertTrue($response);		 	
-// 	 }
+ 	 public function testOKisPincodePresent()
+	 {
+	 	$response=$this->gpapi->isPincodePresent(500008);
+	 	$this->assertTrue($response);		 	
+	 }
 	 
 	 
 	
-// /*
-//  *  Test isCityPresent
-//  */
+/*
+ *  Test isCityPresent
+ */
 	 
-// 	 public function testOKisCityPresent()
-// 	 {
-// 	 	$response=$this->gpapi->isCityPresent('Chennai');
-// 	 	$this->assertTrue($response);
-// 	 }
-// 	 public function testNotOKisCityPresent()
-// 	 {
-// 	 	$response=$this->gpapi->isCityPresent('karimnagar');
-// 	 	$this->assertFalse($response);
-// 	 }
+	 public function testOKisCityPresent()
+	 {
+	 	$response=$this->gpapi->isCityPresent('Chennai');
+	 	$this->assertTrue($response);
+	 }
+	 public function testNotOKisCityPresent()
+	 {
+	 	$response=$this->gpapi->isCityPresent('karimnagar');
+	 	$this->assertFalse($response);
+	 }
 
 /*
  * Test Cancel Order
@@ -227,46 +228,46 @@ class GharpayAPITest extends PHPUnit_Framework_TestCase
 //  */	 
 // 	 //TODO: Null & empty checks
 	 
-// 	 public function testOKViewOrderStatus()
-// 	 {
-// 	 	//TODO: Create an order. Check the status.
-// 	 	$response=$this->gpapi->viewOrderStatus('GW-222-0006887-375');
-// 	 	$this->assertNotNull($response);
-// 	 }
-// 	 public function testNotOKViewOrderStatus()
-// 	 {
-// 	 	$response=$this->gpapi->viewOrderStatus('88747');
-// 	 	$this->assertNull($response);
-// 	 }
+	 public function testOKViewOrderStatus()
+	 {
+	 	
+	 	$response=$this->gpapi->viewOrderStatus('GW-222-0006887-375');
+	 	$this->assertNotNull($response);
+	 }
+	 public function testNotOKViewOrderStatus()
+	 {
+	 	$response=$this->gpapi->viewOrderStatus('88747');
+	 	$this->assertNull($response);
+	 }
 
 /*
  * Test GetCityList
  */	 
-// 	 public function testOKGetCityList()
-// 	 {
-// 	 	$response=$this->gpapi->getCityList();
-// 	 	$this->assertArrayHasKey('0',$response);
-// 	 }
-// 	 //disconnect internet or wrong credentials
-// 	 public function testNotOkCityList()
-// 	 {
-// 	 	$this->gpapi->getCityList();
-// 	 }
+	 public function testOKGetCityList()
+	 {
+	 	$response=$this->gpapi->getCityList();
+	 	$this->assertArrayHasKey('0',$response);
+	 }
+	 /*disconnect internet or wrong credentials*/
+	 public function testNotOkCityList()
+	 {
+	 	$this->gpapi->getCityList();
+	 }
 	 
 	 
-// /*
-//  * Test GetPincodesInCity
-//  */
-// 	 public function testOKGetPincodesInCity()
-// 	 {
-// 	 	$response=$this->gpapi->getPincodesInCity('Mumbai');
-// 	 	$this->assertArrayHasKey('0',$response);
-// 	 }
-// 	 public function  testNotOkGetPincodesInCity()
-// 	 {
-// 	 	$this->setExpectedException("GharpayAPIException");
-// 	 	$response=$this->gpapi->getPincodesInCity('karimnagar');
-// 	 }	 
+/*
+ * Test GetPincodesInCity
+ */
+	 public function testOKGetPincodesInCity()
+	 {
+	 	$response=$this->gpapi->getPincodesInCity('Mumbai');
+	 	$this->assertArrayHasKey('0',$response);
+	 }
+	 public function  testNotOkGetPincodesInCity()
+	 {
+	 	$this->setExpectedException("GharpayAPIException");
+	 	$response=$this->gpapi->getPincodesInCity('karimnagar');
+	 }	 
 
 // /*
 //  * Test getAllPincodes
@@ -283,41 +284,5 @@ class GharpayAPITest extends PHPUnit_Framework_TestCase
 
 	 
 
-//	public function testContactNoMandInACreateOrder()
-//	{
-//		$this->setExpectedException('InvalidArgumentException');	
-//	}
-//	public function testEmailMandInCreateOrder()
-//	{
-//		$this->setExpectedException('Oops! Email is either invalid or missing');
-//	}
-//	 /**
-//     * @expectedException
-//     */
-//	public function testAddressMandInCreateOrder()
-//	{
-//		$this->setExpectedException('Oops ! Address is missing');
-//		
-//	}
-//	public function testOrderDetailsMandCreaterOrder()
-//	{
-//		$this->setExpectedException('Oops ! orderDetails are missing');
-//	}
-//	public function testCityPincodeMandCreateOder()
-//	{
-//		$this->setExpectedException('InvalidArgumentException','Oops!');
-//	}
-//	public function testIfAvailableProductIDMandCreateOrder()
-//	{
-//		
-//	}
-//	public function testProductIfAvailableUnitCostMandCreateOrder()
-//	{
-//	}
-//	public function testIfAvailableAddInfoNameMandCreateOrder()
-//	{			
-//	}
-//	public function testIfAvailableAddInfoValueMandCreator()
-//	{	
-//	}
+
 }

@@ -12,9 +12,6 @@ class CreateOrderTest extends PHPUnit_Framework_TestCase {
 	public function setUp()
 	{
 		$this->gpapi= new GharpayAPI();
-		$this->gpapi->setUsername('test_api');
-		$this->gpapi->setPassword('test_api');
-		$this->gpapi->setURL('services.gharpay.in');
 		$this->cDetails= array(
 				'address' => 'Aruna towers, flat No. 302, Sangeeth Nagar, Somajiguda',
 				'contactNo'=>'8888888888',
@@ -73,7 +70,6 @@ class CreateOrderTest extends PHPUnit_Framework_TestCase {
 		$resp=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
 		$response=$this->gpapi->cancelOrder($resp['gharpayOrderId']);
 		$this->assertNotEmpty($response['gharpayOrderId']);
-		echo $response['gharpayOrderId'];
 		$this->assertNotEmpty($response['result']);
 	}
 	public function testNotOkCancelOrder()

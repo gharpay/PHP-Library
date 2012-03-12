@@ -5,9 +5,6 @@ class IsPincodePresentTest extends PHPUnit_Framework_TestCase {
 	public function setUp()
 	{
 		$this->gpapi= new GharpayAPI();
-		$this->gpapi->setUsername('test_api');
-		$this->gpapi->setPassword('test_api');
-		$this->gpapi->setURL('services.gharpay.in');
 	}
 	public function tearDown()
 	{
@@ -37,13 +34,13 @@ class IsPincodePresentTest extends PHPUnit_Framework_TestCase {
 	public function testNullPincodeisPincodePresent()
 	{
 		$this->setExpectedException('InvalidArgumentException');
-		$response=$this->gpapi->isPincodePresent(505001);
+		$response=$this->gpapi->isPincodePresent(null);
 		
 	}
 	public function testEmptyPincodeisPincodePresent()
 	{
 		$this->setExpectedException('InvalidArgumentException');
-		$response=$this->gpapi->isPincodePresent(505001);
+		$response=$this->gpapi->isPincodePresent('  ');
 	}
 	
 }

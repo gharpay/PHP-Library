@@ -5,17 +5,11 @@ class IsCityPresentTest extends PHPUnit_Framework_TestCase {
 	public function setUp()
 	{
 		$this->gpapi= new GharpayAPI();
-		$this->gpapi->setUsername('test_api');
-		$this->gpapi->setPassword('test_api');
-		$this->gpapi->setURL('services.gharpay.in');
 	}
 	public function tearDown()
 	{
 		unset($gpapi);
 	}
-
-
-
 	/*
 	 *  Test isCityPresent
 	*/
