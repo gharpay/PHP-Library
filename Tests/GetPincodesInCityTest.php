@@ -1,0 +1,39 @@
+<?php
+require_once 'PHP-Library'.DIRECTORY_SEPARATOR.'GharpayAPI.php';
+class GetPincodesInCityTest extends PHPUnit_Framework_TestCase {
+	private $gpapi;
+	public function setUp()
+	{
+		$this->gpapi= new GharpayAPI();
+		$this->gpapi->setUsername('test_api');
+		$this->gpapi->setPassword('test_api');
+		$this->gpapi->setURL('services.gharpay.in');
+	}
+	public function tearDown()
+	{
+		unset($gpapi);
+	}
+	/*
+	 * Test GetPincodesInCity
+	*/
+	public function testOKGetPincodesInCity()
+	{
+		$response=$this->gpapi->getPincodesInCity('Mumbai');
+		$this->assertArrayHasKey('0',$response);
+	}
+	public function  testNotOkGetPincodesInCity()
+	{
+		$this->setExpectedException("GharpayAPIException");
+		$response=$this->gpapi->getPincodesInCity('karimnagar');
+	}
+	public function  testNullCityGetPincodesInCity()
+	{
+		$this->setExpectedException('InvalidArgumentException');
+		$response=$this->gpapi->getPincodesInCity(null);
+	}
+	public function  testEmptyCityGetPincodesInCity()
+	{
+		$this->setExpectedException("InvalidArgumentException");
+		$response=$this->gpapi->getPincodesInCity('   ');
+	}
+}

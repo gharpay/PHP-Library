@@ -24,7 +24,9 @@ class GharpayAPI
     private $_url;
     function __construct()
     {
-    	//$user 	
+    	$this->_username = USERNAME;
+    	$this->_password= PASSWORD;
+    	$this->_url= URL; 	
     }
     public function getUsername()
     {
@@ -228,11 +230,11 @@ class GharpayAPI
     	$gharpayOrderId = trim($gharpayOrderId);
     	if(!empty($gharpayOrderId))
     	{
-	    	$response=$this->callGharpayAPI('viewOrderStatus?orderID='.$gharpayOrderId);    	
+	    	$response=$this->callGharpayAPI('viewOrderStatus?orderID='.$gharpayOrderId);
 	   		if(!isset($response_arr['viewOrderStatusResponse']['errorCode']))
 	   		{	
 	    		$resp_mod['status']= $response['viewOrderStatusResponse']['orderStatus'];
-	   		    $resp_mod['gharpayOrderId']=$response['viewOrderStatusResponse']['OrderID'];  		
+	   		    $resp_mod['gharpayOrderId']=$response['viewOrderStatusResponse']['orderID'];  		
 	   			return $resp_mod;
 	    	}
 	   		else if(!($response['viewOrderStatusResponse']['errorMessage']=='null')||!($response['viewOrderStatusResponse']['errorCode']=='0'))
@@ -552,12 +554,10 @@ class GharpayAPI
     			&&isset($param['value'])&&!empty($param['value'])
     			)
     			{
-    				//echo 'returning true';
     				return true;			
     			}
     			else
     			{
-		    		//echo('throwing exception');
 		    		throw new InvalidArgumentException("Parameter Name or Value is missing in Additional Information");
     			}
     		}
@@ -579,7 +579,6 @@ class GharpayAPI
         			$pd['productID']=trim($pd['productID']);
         			$pd['productQuantity']=trim($pd['productQuantity']);
         			$pd['unitCost']=trim($pd['unitCost']);
-        			echo $pd['unitCost'];
         			if(isset($pd['productID'])&&isset($pd['productQuantity'])&&isset($pd['unitCost'])&&
         			!empty($pd['productID'])&&!empty($pd['productQuantity'])&&!empty($pd['unitCost'])
         			)

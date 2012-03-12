@@ -1,14 +1,13 @@
 <?php
 require_once ('PHP-Library'.DIRECTORY_SEPARATOR.'GharpayAPI.php');
-class CreateOrderTest extends PHPUnit_Framework_TestCase {
-	
+class ViewOrderDetailsTest extends PHPUnit_Framework_TestCase {
+
 	private $cDetails;
 	private $oDetails;
 	private $pDetails;
 	private $gpapi;
 	private $parameters;
 	private $productIds;
-	
 	public function setUp()
 	{
 		$this->gpapi= new GharpayAPI();
@@ -28,7 +27,7 @@ class CreateOrderTest extends PHPUnit_Framework_TestCase {
 				'deliveryDate'=>'30-03-2012',
 				'orderAmount'=>'15999'
 		);
-	
+
 		$this->prod1 = array (
 				'productID'=>884888,
 				'productQuantity'=>1,
@@ -42,7 +41,7 @@ class CreateOrderTest extends PHPUnit_Framework_TestCase {
 				'unitCost'=>1599
 		);
 		array_push($this->pDetails,$this->prod2);
-	
+
 		$this->parameters[0]=array(
 				'name'=>'somename',
 				'value'=>'somevalue'
@@ -66,30 +65,30 @@ class CreateOrderTest extends PHPUnit_Framework_TestCase {
 	}
 	
 	/*
-	 * Test Cancel Order
+	 * Test ViewOrderDetails
 	*/
-	public function testOkCancelOrder()
+	
+	public function testOkViewOrderDetails()
 	{
 		$resp=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
-		$response=$this->gpapi->cancelOrder($resp['gharpayOrderId']);
-		$this->assertNotEmpty($response['gharpayOrderId']);
-		echo $response['gharpayOrderId'];
-		$this->assertNotEmpty($response['result']);
+		$response=$this->gpapi->viewOrderDetails($resp['gharpayOrderId']);
+		$this->assertNotEmpty($response);
 	}
-	public function testNotOkCancelOrder()
+	public function testNotOkViewOrderDetails()
 	{
-		$this->setExpectedException("GharpayAPIException");
-		$response=$this->gpapi->cancelOrder('GW-222-247');
+		$this->setExpectedException('GharpayAPIException');
+		$response=$this->gpapi->viewOrderDetails('3456');
+		 
 	}
-	public function testNullCancelOrder()
+	public function testNullGharpayIdViewOrderDetails()
 	{
-		$this->setExpectedException("InvalidArgumentException");
-		$response=$this->gpapi->cancelOrder(null);
+		$this->setExpectedException('InvalidArgumentException');
+		$response=$this->gpapi->viewOrderDetails(null);
 	}
-	public function testEmptyCancelOrder()
+	public function testEmptyGharpayIdViewOrderDetails()
 	{
-		$this->setExpectedException("InvalidArgumentException");
-		$response=$this->gpapi->cancelOrder('  ');
+		$this->setExpectedException('InvalidArgumentException');
+		$response=$this->gpapi->viewOrderDetails(' ');
 	}
 	
 }
