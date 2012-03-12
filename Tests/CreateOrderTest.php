@@ -1,5 +1,5 @@
 <?php
-require 'PHP-Library'.DIRECTORY_SEPARATOR.'GharpayAPI.php';
+require_once dirname(__FILE__).'/../GharpayAPI.php';
 class CreateOrderTest extends PHPUnit_Framework_TestCase 
 {
 
@@ -53,6 +53,7 @@ class CreateOrderTest extends PHPUnit_Framework_TestCase
 				1=>'884888'
 		);
 	}
+	
 	public function tearDown(){
 		$this->cDetails = null;
 		$this->oDetails=null;
@@ -79,28 +80,30 @@ class CreateOrderTest extends PHPUnit_Framework_TestCase
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
 	}
-	public function testNulloDetailsCreateOrder()
+	public function testNullPincodeCreateOrder()
 	{
 		$this->oDetails['pincode']=null;
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
 	}
-	public function testEmptyoDetailsCreateOrder()
+	public function testEmptyClientIdCreateOrder()
 	{
 		$this->oDetails['clientOrderId']='  ';
 		//$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);		
 	}
-	public function testNullpDetailsCreateOrder()
+	public function testNullProdQtyCreateOrder()
 	{
 		$this->pDetails['0']['productQuantity']=null;
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
 	}
-	public function testEmptypDetailsCreateOrder()
+	public function testNullUnitCostCreateOrder()
 	{
-		$this->pDetais['0']['unitCost']=null;
+		$this->pDetails['0']['unitCost']=null;
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
 	}
+	
 }
+?>

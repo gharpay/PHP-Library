@@ -1,6 +1,6 @@
 <?php
 
-require_once 'PHP-Library'.DIRECTORY_SEPARATOR.'GharpayAPI.php';
+require_once dirname(__FILE__).'/../GharpayAPI.php';
 class MiscTest extends PHPunit_Framework_TestCase
 {
 	private $cDetails;

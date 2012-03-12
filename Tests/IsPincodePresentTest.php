@@ -1,5 +1,5 @@
 <?php
-require_once 'PHP-Library'.DIRECTORY_SEPARATOR.'GharpayAPI.php';
+require_once dirname(__FILE__).'/../GharpayAPI.php';
 class IsPincodePresentTest extends PHPUnit_Framework_TestCase {
 	private $gpapi;
 	public function setUp()
