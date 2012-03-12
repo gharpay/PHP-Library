@@ -11,13 +11,15 @@
 
  */
 require_once('GharpayAPI.php');
-class GharpayAPITest extends PHPUnit_Framework_TestCase{
+class GharpayAPITest extends PHPUnit_Framework_TestCase
+{
 	private $cDetails;
 	private $oDetails;
 	private $pDetails;
 	private $gpapi;
 	private $parameters;
 	private $productIds;
+	
 	public function setUp()
 	{
 		$this->gpapi= new GharpayAPI();
@@ -34,7 +36,7 @@ class GharpayAPITest extends PHPUnit_Framework_TestCase{
         $this->oDetails = array(
             'pincode'=>'400057',
             'clientOrderID'=>'6100002',
-            'deliveryDate'=>'10-03-2012',
+            'deliveryDate'=>'30-03-2012',
             'orderAmount'=>'15999'
         );
         
@@ -50,7 +52,8 @@ class GharpayAPITest extends PHPUnit_Framework_TestCase{
               'productQuantity'=>1,
               'unitCost'=>1599
             );
-        array_push($this->pDetails,$this->prod2);        
+        array_push($this->pDetails,$this->prod2); 
+        
          $this->parameters[0]=array(
             						'name'=>'somename',
             						'value'=>'somevalue'
@@ -61,9 +64,7 @@ class GharpayAPITest extends PHPUnit_Framework_TestCase{
          $this->productIds=array(
          		0=>'88878755',
          		1=>'884888'
-         		);
-        
-                 
+         		);                 
 	}
 	
     public function tearDown(){
@@ -75,6 +76,7 @@ class GharpayAPITest extends PHPUnit_Framework_TestCase{
 		$this->gpapi=null;   	    	
     }
     
+  //  TODO: DEGENERATE CASES.( null & "    ")
 /*
  * Test createOrder
  */    
@@ -97,62 +99,98 @@ class GharpayAPITest extends PHPUnit_Framework_TestCase{
    
    public function testOkCancelProductsFromOrder()
    {
-   	$response=$this->gpapi->cancelProductsFromOrder('GW-222-0006879-299', 4000, $this->productIds);
-    $this->assertTrue($response);
+   	$response=$this->gpapi->cancelProductsFromOrder('GW-222-0006946-385', 4000, $this->productIds);
+    $this->assertNotEmpty($response['gharpayOrderId']);
+    $this->assertEquals($response['result'],'true'); 
    }
    public function testNotOkCancelProductsFromOrder()
    {
    	$this->setExpectedException("GharpayAPIException");
-   	$response=$this->gpapi->cancelProductsFromOrder('0006879-299', 4000, $this->productIds);
+   	$response=$this->gpapi->cancelProductsFromOrder('0006879-299',4000, $this->productIds);
+   }
+   public function testNullGharpayIDCancelProductsFromOrder()
+   {
+   	$this->setExpectedException('InvalidArgumentException');
+   	$response=$this->gpapi->cancelProductsFromOrder(null,4000, $this->productIds);
+   	
+   }
+   public function testEmptyGharpayIDCancelProductsFromOrder()
+   {
+   	$this->setExpectedException('InvalidArgumentException');
+   	$response=$this->gpapi->cancelProductsFromOrder('', 4000, $this->productIds);
+   }
+   public function testNullOrderAmountCancelProductsFromOrder()
+   {
+   	$this->setExpectedException('InvalidArgumentException');
+   	$response=$this->gpapi->cancelProductsFromOrder('GW-222-0006946-385', null, $this->productIds);
+   }
+   public function testStringOrderAmountCancelProductsFromOrder()
+   {
+   	$response=$this->gpapi->cancelProductsFromOrder('GW-222-0006946-385', '5000', $this->productIds);
+   	$this->assertNotEmpty($response['gharpayOrderId']);
+   	$this->assertNotEmpty($response['result']);
+   }
+   public function testNullProductIdCancelProductsFromOrder()
+   {
+   	$this->productIds[0]=null;
+   	$this->setExpectedException('InvalidArgumentException');
+   	$response=$this->gpapi->cancelProductsFromOrder('GW-222-0006946-385', null, $this->productIds);
+   }
+   public function testEmptyProductIdCancelProductsFromOrder()
+   {
+   	$this->productIds[0]='  ';
+   	$this->setExpectedException('InvalidArgumentException');
+   	$response=$this->gpapi->cancelProductsFromOrder('GW-222-0006946-385', null, $this->productIds);
    }
 	 
-/*
- * Test ViewOrderDetails
- */	 
+// /*
+//  * Test ViewOrderDetails
+//  */	 
 	 
-	 public function testOkViewOrderDetails()
-	 {
-	    $response=$this->gpapi->viewOrderDetails('GW-222-0006921-775');
-	    $this->assertNotEmpty($response);
-	 }
-	public function testNotOkViewOrderDetails()
-	 {
-	 	$this->setExpectedException('GharpayAPIException');
-	 	$response=$this->gpapi->viewOrderDetails('3456');
+// 	 public function testOkViewOrderDetails()
+// 	 {
+// 	    $response=$this->gpapi->viewOrderDetails('GW-222-0006921-775');
+// 	    $this->assertNotEmpty($response);
+// 	 }
+// 	public function testNotOkViewOrderDetails()
+// 	 {
+// 	 	$this->setExpectedException('GharpayAPIException');
+// 	 	$response=$this->gpapi->viewOrderDetails('3456');
 	 	
-	 }
+// 	 }
 	 
-/*
- * Test isPincodePresent
- */
+// /*
+//  * Test isPincodePresent
+//  */
 	 
-	 public function testNotOkisPincodePresent()
-	 {
-	 	$this->setExpectedException('InvalidArgumentException');
-	 	$response=$this->gpapi->isPincodePresent(8787);	 		 	
-	 }
- 	public function testOKisPincodePresent()
-	 {
-	 	$response=$this->gpapi->isPincodePresent(500008);
-	 	$this->assertTrue($response);		 	
-	 }
+// 	 public function testNotOkisPincodePresent()
+// 	 {
+// 	 	$this->setExpectedException('InvalidArgumentException');
+// 	 	$response=$this->gpapi->isPincodePresent(8787);	 		 	
+// 	 }
+ 	 
+//  	 public function testOKisPincodePresent()
+// 	 {
+// 	 	$response=$this->gpapi->isPincodePresent(500008);
+// 	 	$this->assertTrue($response);		 	
+// 	 }
 	 
 	 
 	
-/*
- *  Test isCityPresent
- */
+// /*
+//  *  Test isCityPresent
+//  */
 	 
-	 public function testOKisCityPresent()
-	 {
-	 	$response=$this->gpapi->isCityPresent('Chennai');
-	 	$this->assertTrue($response);
-	 }
-	 public function testNotOKisCityPresent()
-	 {
-	 	$response=$this->gpapi->isCityPresent('karimnagar');
-	 	$this->assertFalse($response);
-	 }
+// 	 public function testOKisCityPresent()
+// 	 {
+// 	 	$response=$this->gpapi->isCityPresent('Chennai');
+// 	 	$this->assertTrue($response);
+// 	 }
+// 	 public function testNotOKisCityPresent()
+// 	 {
+// 	 	$response=$this->gpapi->isCityPresent('karimnagar');
+// 	 	$this->assertFalse($response);
+// 	 }
 
 /*
  * Test Cancel Order
@@ -174,6 +212,7 @@ class GharpayAPITest extends PHPUnit_Framework_TestCase{
 	 
 	 public function testOKAddProductsToOrder()
 	 {
+	 	//TODO: Create an order and then add an order.
 	 	$response=$this->gpapi->addProductsToOrder('GW-222-0006921-775',16999,$this->pDetails);
 	 	$this->assertTrue($response);
 	 }
@@ -182,64 +221,65 @@ class GharpayAPITest extends PHPUnit_Framework_TestCase{
 	 	$this->setExpectedException("GharpayAPIException");
 	 	$response=$this->gpapi->addProductsToOrder('2-0006261-025',16999,$this->pDetails); 	
 	 }
-/*
- * Test ViewOrderStatus
- * 
- */	 
-	 public function testOKViewOrderStatus()
-	 {
-	 	$response=$this->gpapi->viewOrderStatus('GW-222-0006887-375');
-	 	$this->assertNotNull($response);
-	 }
-	 public function testNotOKViewOrderStatus()
-	 {
-	 	$response=$this->gpapi->viewOrderStatus('88747');
-	 	$this->assertNull($response);
-	 }
+// /*
+//  * Test ViewOrderStatus
+//  * 
+//  */	 
+// 	 //TODO: Null & empty checks
+	 
+// 	 public function testOKViewOrderStatus()
+// 	 {
+// 	 	//TODO: Create an order. Check the status.
+// 	 	$response=$this->gpapi->viewOrderStatus('GW-222-0006887-375');
+// 	 	$this->assertNotNull($response);
+// 	 }
+// 	 public function testNotOKViewOrderStatus()
+// 	 {
+// 	 	$response=$this->gpapi->viewOrderStatus('88747');
+// 	 	$this->assertNull($response);
+// 	 }
 
 /*
  * Test GetCityList
  */	 
-	 public function testOKGetCityList()
-	 {
-	 	$response=$this->gpapi->getCityList();
-	 	$this->assertArrayHasKey('0',$response);
-	 }
-	 //disconnect internet or wrong credentials
-	 public function testNotOkCityList()
-	 {
-	 	$this->setExpectedException("GharpayAPIException");
-	 	$this->gpapi->getCityList();
-	 }
+// 	 public function testOKGetCityList()
+// 	 {
+// 	 	$response=$this->gpapi->getCityList();
+// 	 	$this->assertArrayHasKey('0',$response);
+// 	 }
+// 	 //disconnect internet or wrong credentials
+// 	 public function testNotOkCityList()
+// 	 {
+// 	 	$this->gpapi->getCityList();
+// 	 }
 	 
 	 
-/*
- * Test GetPincodesInCity
- */
-	 public function testOKGetPincodesInCity()
-	 {
-	 	$response=$this->gpapi->getPincodesInCity('Mumbai');
-	 	$this->assertArrayHasKey('0',$response);
-	 }
-	 public function  testNotOkGetPincodesInCity()
-	 {
-	 	$this->setExpectedException("GharpayAPIException");
-	 	$response=$this->gpapi->getPincodesInCity('karimnagar');
-	 }	 
+// /*
+//  * Test GetPincodesInCity
+//  */
+// 	 public function testOKGetPincodesInCity()
+// 	 {
+// 	 	$response=$this->gpapi->getPincodesInCity('Mumbai');
+// 	 	$this->assertArrayHasKey('0',$response);
+// 	 }
+// 	 public function  testNotOkGetPincodesInCity()
+// 	 {
+// 	 	$this->setExpectedException("GharpayAPIException");
+// 	 	$response=$this->gpapi->getPincodesInCity('karimnagar');
+// 	 }	 
 
-/*
- * Test getAllPincodes
- */	
- 	 public function testOkGetAllPincodes()
- 	 {
- 		$response=$this->gpapi->getAllPincodes();
- 		$this->assertArrayHasKey('0',$response);
- 	 }
- 	 public function testNotOkGetAllPincodes()
- 	 {
- 	 	$this->setExpectedException("GharpayAPIException");
- 	 	$this->gpapi->getAllPincodes();
- 	 }
+// /*
+//  * Test getAllPincodes
+//  */	
+//  	 public function testOkGetAllPincodes()
+//  	 {
+//  		$response=$this->gpapi->getAllPincodes();
+//  		$this->assertArrayHasKey('0',$response);
+//  	 }
+//  	 public function testNotOkGetAllPincodes()
+//  	 {
+//  	 	$this->gpapi->getAllPincodes();
+//  	 }
 
 	 
 
@@ -281,4 +321,3 @@ class GharpayAPITest extends PHPUnit_Framework_TestCase{
 //	{	
 //	}
 }
-?>

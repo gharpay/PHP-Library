@@ -4,6 +4,7 @@ ini_set('log_errors', 1);
 ini_set('error_log', dirname('error') . '/error_log.txt'); 
 error_reporting(E_ALL);
 require_once 'GharpayAPI.php';
+require_once 'System.php';
         $gpapi= new GharpayAPI();
         $gpapi->setUsername('test_api');
         $gpapi->setPassword('test_api');
@@ -39,9 +40,13 @@ require_once 'GharpayAPI.php';
          $parameters[1]=array(	  'name'=>'somename',
             					  'value'=>'somevalue'
             					);
+         $productIds=array(
+         		0=>'88878755',
+         		1=>'884888'
+         );
 //             array_push($pDetails, $pDet1);
 //             array_push($pDetails, $pDet2);
-//
+        $response= $gpapi->cancelProductsFromOrder('GW-222-0006947-994', 4000, $productIds);
 //        $result = $gpapi->createOrder($cDetails, $oDetails, $pDetails);
 //        var_dump($result);
 //        $resp = $gpapi->viewOrderStatus('GW-222-0006435-356');
@@ -49,16 +54,15 @@ require_once 'GharpayAPI.php';
 		//$resp=$gpapi->createOrder($cDetails,$oDetails,$pDetails,$parameters);
 //		$resp=$gpapi->validDate('12.12.12');
 
-         //TODO : Check View Order Details;
 //          $response=$gpapi->viewOrderDetails('GW-222-0006887-375');
 //          var_dump($response);
-         //TODO : View Order Status
 //         $response=$gpapi->viewOrderStatus('GW-222-0006887');
 //         var_dump($response);
-         //TODO : view City List;
+        
         // $response=$gpapi->getPincodesInCity('karimnagar');
-//       TODO : Get All Pincodes
 // 	 $resp=$gpapi->cancelOrder('GW-222-0006247-910');
-		 $response=$gpapi->isCityPresent('Karimnagar');
+		 //$response=$gpapi->isCityPresent('Karimnagar');
+		 
 		 var_dump($response);
+		// var_dump(class_exists('System', false));
 ?>
