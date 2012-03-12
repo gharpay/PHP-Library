@@ -1,7 +1,6 @@
 <?php
-
 require_once 'PHP-Library'.DIRECTORY_SEPARATOR.'GharpayAPI.php';
-class MiscTest extends PHPunit_Framework_TestCase
+class ViewOrderStatusTest extends PHPunit_Framework_TestCase
 {
 	private $cDetails;
 	private $oDetails;
@@ -67,7 +66,7 @@ class MiscTest extends PHPunit_Framework_TestCase
 *
 */
 	 //TODO: Null & empty checks
-	 public function testOKViewOrderStatus()
+	 public function testOK()
 	 {
 	 	$resp=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
 	 	$response=$this->gpapi->viewOrderStatus($resp['gharpayOrderId']);
@@ -75,18 +74,18 @@ class MiscTest extends PHPunit_Framework_TestCase
 	 	$this->assertNotEmpty($response['status']);
 	 } 
 	
-	 public function testNotOKViewOrderStatus()
+	 public function testNotOK()
 	 {
 	 	$response=$this->gpapi->viewOrderStatus('88747');
 	 	$this->assertNotEmpty($response['gharpayOrderId']);
 	 	$this->assertEmpty($response['status']);
 	 }
-	 public function testEmptyGharpayOrderIdViewOrderStatus()
+	 public function testEmptyGharpayOrderId()
 	 {
 	 	$this->setExpectedException('InvalidArgumentException');
 	 	$response=$this->gpapi->viewOrderStatus('  ');
 	 }
-	 public function testNullGharpayOrderIdViewOrderStatus()
+	 public function testNullGharpayOrderId()
 	 {
 	 	$this->setExpectedException('InvalidArgumentException');
 	 	$response=$this->gpapi->viewOrderStatus(null);

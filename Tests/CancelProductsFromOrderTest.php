@@ -66,46 +66,46 @@ class CancelProductsFromOrderTest extends PHPunit_Framework_TestCase
 	 * Test cancelProductsFromOrder
 	*/
 	 
-	public function testOkCancelProductsFromOrder()
+	public function testOk()
 	{
 		$response=$this->gpapi->cancelProductsFromOrder('GW-222-0006946-385', 4000, $this->productIds);
 		$this->assertNotEmpty($response['gharpayOrderId']);
 		$this->assertEquals($response['result'],'true');
 	}
-	public function testNotOkCancelProductsFromOrder()
+	public function testNotOk()
 	{
 		$this->setExpectedException("GharpayAPIException");
 		$response=$this->gpapi->cancelProductsFromOrder('0006879-299',4000, $this->productIds);
 	}
-	public function testNullGharpayIDCancelProductsFromOrder()
+	public function testNullGharpayID()
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->cancelProductsFromOrder(null,4000, $this->productIds);
 	
 	}
-	public function testEmptyGharpayIDCancelProductsFromOrder()
+	public function testEmptyGharpayID()
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->cancelProductsFromOrder('', 4000, $this->productIds);
 	}
-	public function testNullOrderAmountCancelProductsFromOrder()
+	public function testNullOrderAmount()
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->cancelProductsFromOrder('GW-222-0006946-385', null, $this->productIds);
 	}
-	public function testStringOrderAmountCancelProductsFromOrder()
+	public function testStringOrderAmount()
 	{
 		$response=$this->gpapi->cancelProductsFromOrder('GW-222-0006946-385', '5000', $this->productIds);
 		$this->assertNotEmpty($response['gharpayOrderId']);
 		$this->assertNotEmpty($response['result']);
 	}
-	public function testNullProductIdCancelProductsFromOrder()
+	public function testNullProductId()
 	{
 		$this->productIds[0]=null;
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->cancelProductsFromOrder('GW-222-0006946-385', null, $this->productIds);
 	}
-	public function testEmptyProductIdCancelProductsFromOrder()
+	public function testEmptyProductId()
 	{
 		$this->productIds[0]='  ';
 		$this->setExpectedException('InvalidArgumentException');

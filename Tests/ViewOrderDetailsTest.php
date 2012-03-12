@@ -65,24 +65,24 @@ class ViewOrderDetailsTest extends PHPUnit_Framework_TestCase {
 	 * Test ViewOrderDetails
 	*/
 	
-	public function testOkViewOrderDetails()
+	public function testOk()
 	{
 		$resp=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
 		$response=$this->gpapi->viewOrderDetails($resp['gharpayOrderId']);
 		$this->assertNotEmpty($response);
 	}
-	public function testNotOkViewOrderDetails()
+	public function testNotOk()
 	{
 		$this->setExpectedException('GharpayAPIException');
 		$response=$this->gpapi->viewOrderDetails('3456');
 		 
 	}
-	public function testNullGharpayIdViewOrderDetails()
+	public function testNullGharpayId()
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->viewOrderDetails(null);
 	}
-	public function testEmptyGharpayIdViewOrderDetails()
+	public function testEmptyGharpayId()
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->viewOrderDetails(' ');

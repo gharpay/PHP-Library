@@ -12,7 +12,7 @@ class IsCityPresentTest extends PHPUnit_Framework_TestCase {
 	}
 	/*
 	 *  Test isCityPresent
-	*/
+	 */
 	
 	public function testOKisCityPresent()
 	{

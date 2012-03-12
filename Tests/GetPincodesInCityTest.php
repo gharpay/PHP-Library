@@ -13,22 +13,22 @@ class GetPincodesInCityTest extends PHPUnit_Framework_TestCase {
 	/*
 	 * Test GetPincodesInCity
 	*/
-	public function testOKGetPincodesInCity()
+	public function testOK()
 	{
 		$response=$this->gpapi->getPincodesInCity('Mumbai');
 		$this->assertArrayHasKey('0',$response);
 	}
-	public function  testNotOkGetPincodesInCity()
+	public function  testNotOk()
 	{
 		$this->setExpectedException("GharpayAPIException");
 		$response=$this->gpapi->getPincodesInCity('karimnagar');
 	}
-	public function  testNullCityGetPincodesInCity()
+	public function  testNullCity()
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->getPincodesInCity(null);
 	}
-	public function  testEmptyCityGetPincodesInCity()
+	public function  testEmptyCity()
 	{
 		$this->setExpectedException("InvalidArgumentException");
 		$response=$this->gpapi->getPincodesInCity('   ');

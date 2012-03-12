@@ -66,47 +66,47 @@ public function tearDown(){
  * Test addProductsToOrder
 */
 
-	public function testOKAddProductsToOrder()
+	public function testOK()
 	{
 		//TODO: Create an order and then add an order.
 		$response=$this->gpapi->addProductsToOrder('GW-222-0006921-775',16999,$this->pDetails);
 		$this->assertNotEmpty($response['gharpayOrderId']);
 		$this->assertNotEmpty($response['result']);
 	}
-	public function testNotOkAddProductsToOrder()
+	public function testNotOk()
 	{
 		$this->setExpectedException("GharpayAPIException");
 		$response=$this->gpapi->addProductsToOrder('2-0006261-025',16999,$this->pDetails);
 	}
-	public function testNullGharpayOrderIDAddProductsToOrder()
+	public function testNullGharpayOrderID()
 	{
 		$this->setExpectedException("InvalidArgumentException");
 		$response=$this->gpapi->addProductsToOrder(null,16999,$this->pDetails);
 	}
-	public function testEmptyGharpayOrderIDAddProductsToOrder()
+	public function testEmptyGharpayOrderID()
 	{
 		$this->setExpectedException("InvalidArgumentException");
 		$response=$this->gpapi->addProductsToOrder(' ',16999,$this->pDetails);
 	}
-	public function testNullOrderAmountAddProductsToOrder()
+	public function testNullOrderAmount()
 	{
 		$this->setExpectedException("InvalidArgumentException");
 		$response=$this->gpapi->addProductsToOrder('GW-222-0006921-775',null,$this->pDetails);
 	}
-	public function testEmptyOrderAmountAddProductsToOrder()
+	public function testEmptyOrderAmount()
 	{
 		$this->setExpectedException("InvalidArgumentException");
 		$response=$this->gpapi->addProductsToOrder('GW-222-0006921-775','  ',$this->pDetails);
 	}
-	public function testNullPDetailsAddProductsToOrder()
+	public function testNullPDetails()
 	{
 		$this->pDetails['0']['unitCost']=null;
 		$this->setExpectedException("InvalidArgumentException");
 		$response=$this->gpapi->addProductsToOrder('GW-222-0006921-775',16000,$this->pDetails);
 	}
-	public function testEmptyPDetailsAddProductsToOrder()
+	public function testEmptyPDetails()
 	{
-		$this->pDetails['0']['productQuantity']=' ';
+		$this->pDetails['0']['productQuantity']='  ';
 		$this->setExpectedException("InvalidArgumentException");
 		$response=$this->gpapi->addProductsToOrder('GW-222-0006921-775',16000,$this->pDetails);
 	} 

@@ -15,29 +15,29 @@ class IsPincodePresentTest extends PHPUnit_Framework_TestCase {
 	 * Test isPincodePresent
 	*/
 	
-	public function testWrongLengthPincodeisPincodePresent()
+	public function testWrongLengthPincode()
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->isPincodePresent(8787);
 	}
 		
-	public function testOKisPincodePresent()
+	public function testOK()
 	{
 		$response=$this->gpapi->isPincodePresent(500008);
 		$this->assertTrue($response);
 	}
-	public function testNotOKisPincodePresent()
+	public function testNotOK()
 	{
 		$response=$this->gpapi->isPincodePresent(505001);
 		$this->assertFalse($response);
 	}
-	public function testNullPincodeisPincodePresent()
+	public function testNullPincode()
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->isPincodePresent(null);
 		
 	}
-	public function testEmptyPincodeisPincodePresent()
+	public function testEmptyPincode()
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->isPincodePresent('  ');

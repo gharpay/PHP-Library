@@ -14,13 +14,13 @@ class GetCityListTest extends PHPUnit_Framework_TestCase {
 	/*
 	 * Test GetCityList
 	*/
-	public function testOKGetCityList()
+	public function testOK()
 	{
 		$response=$this->gpapi->getCityList();
 		$this->assertArrayHasKey('0',$response);
 	}
 	/*disconnect internet or wrong credentials*/
-	public function testNotOkCityList()
+	public function testNotOk()
 	{
 		$this->gpapi->setPassword('');
 		$this->setExpectedException('GharpayAPIException');

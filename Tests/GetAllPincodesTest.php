@@ -14,12 +14,12 @@ class GetAllPincodesTest extends PHPUnit_Framework_TestCase {
 	/*
 	 * Test getAllPincodes
 	*/
-	public function testOkGetAllPincodes()
+	public function testOk()
 	{
 		$response=$this->gpapi->getAllPincodes();
 		$this->assertArrayHasKey('0',$response);
 	}
-	public function testNotOkGetAllPincodes()
+	public function testNotOk()
 	{
 		$this->gpapi->setPassword('');
 		$this->setExpectedException("GharpayAPIException");

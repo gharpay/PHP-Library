@@ -62,42 +62,47 @@ class CreateOrderTest extends PHPUnit_Framework_TestCase
 		$this->productIds=null;
 	}
 	
-	public function testOKCreateOrder()
+	public function testOK()
 	{
 		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
 		$this->assertNotEmpty($response['gharpayOrderId']);
 	}
-	public function testnullcDetailsCreateOrder()
+	public function testnullcDetails()
 	{
 		$this->cDetails['firstName']=null;
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
 	}
-	public function testEmptycDetailsCreateOrder()
+	//customer Details
+	public function testEmptycDetails()
 	{
 		$this->cDetails['firstName']='  ';
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
 	}
-	public function testNulloDetailsCreateOrder()
+	
+	//Order Details
+	public function testNulloDetails()
 	{
 		$this->oDetails['pincode']=null;
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
 	}
-	public function testEmptyoDetailsCreateOrder()
+	public function testEmptyoDetails()
 	{
 		$this->oDetails['clientOrderId']='  ';
-		//$this->setExpectedException('InvalidArgumentException');
+		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);		
 	}
-	public function testNullpDetailsCreateOrder()
+	
+	//product Details
+	public function testNullpDetails()
 	{
 		$this->pDetails['0']['productQuantity']=null;
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
 	}
-	public function testEmptypDetailsCreateOrder()
+	public function testEmptypDetails()
 	{
 		$this->pDetais['0']['unitCost']=null;
 		$this->setExpectedException('InvalidArgumentException');

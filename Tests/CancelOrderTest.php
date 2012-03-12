@@ -1,6 +1,6 @@
 <?php
 require_once ('PHP-Library'.DIRECTORY_SEPARATOR.'GharpayAPI.php');
-class CreateOrderTest extends PHPUnit_Framework_TestCase {
+class CancelOrderTest extends PHPUnit_Framework_TestCase {
 	
 	private $cDetails;
 	private $oDetails;
@@ -65,24 +65,24 @@ class CreateOrderTest extends PHPUnit_Framework_TestCase {
 	/*
 	 * Test Cancel Order
 	*/
-	public function testOkCancelOrder()
+	public function testOk()
 	{
 		$resp=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
 		$response=$this->gpapi->cancelOrder($resp['gharpayOrderId']);
 		$this->assertNotEmpty($response['gharpayOrderId']);
 		$this->assertNotEmpty($response['result']);
 	}
-	public function testNotOkCancelOrder()
+	public function testNotOk()
 	{
 		$this->setExpectedException("GharpayAPIException");
 		$response=$this->gpapi->cancelOrder('GW-222-247');
 	}
-	public function testNullCancelOrder()
+	public function testNull()
 	{
 		$this->setExpectedException("InvalidArgumentException");
 		$response=$this->gpapi->cancelOrder(null);
 	}
-	public function testEmptyCancelOrder()
+	public function testEmpty()
 	{
 		$this->setExpectedException("InvalidArgumentException");
 		$response=$this->gpapi->cancelOrder('  ');
