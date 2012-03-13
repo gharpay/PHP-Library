@@ -1,5 +1,6 @@
 <?php
-require_once ('PHP-Library'.DIRECTORY_SEPARATOR.'GharpayAPI.php');
+require_once dirname(__File__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'GharpayAPI.php';
+
 class CancelProductsFromOrderTest extends PHPunit_Framework_TestCase
 {
 	private $cDetails;
@@ -107,11 +108,12 @@ class CancelProductsFromOrderTest extends PHPunit_Framework_TestCase
 		$this->assertNotEmpty($response['result']);
 	}
 	//Product Ids array
-	public function testNullProductIds()
+	public function testEmptyProductIds()
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->cancelProductsFromOrder('GW-222-0006946-385', 6000, '  ');
 	}
+	
 	public function testNullProductIds()
 	{
 		$this->setExpectedException('InvalidArgumentException');

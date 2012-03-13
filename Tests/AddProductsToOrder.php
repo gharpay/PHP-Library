@@ -2,7 +2,7 @@
 //$path=$_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR.'PHP-Library'.DIRECTORY_SEPARATOR.'GharpayAPI.php';
 // echo $path;
 
-require_once '/home/khaja/public_html'.DIRECTORY_SEPARATOR.'PHP-Library'.DIRECTORY_SEPARATOR.'GharpayAPI.php';
+require_once dirname(__File__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'GharpayAPI.php';
 class AddPrductsToOrder extends PHPunit_Framework_TestCase 
 {
 private $cDetails;
@@ -141,7 +141,7 @@ public function tearDown(){
 	}
 	public function testNullProdId()
 	{
-		$this->pDetails['0']['productID']=null;;
+		$this->pDetails['0']['productID']=null;
 		$this->setExpectedException("InvalidArgumentException");
 		$response=$this->gpapi->addProductsToOrder('GW-222-0006921-775',16000,$this->pDetails);
 	}

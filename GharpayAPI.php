@@ -136,9 +136,10 @@ class GharpayAPI
     public function createOrder($customerDetailsArray, $orderDetailsArray,$productDetailsArray=null, $additionalParametersArray=null)
     {
         $arr=array();
-        if(!empty($customerDetailsArray)&&!empty($orderDetailsArray)&&)
+        //checking null and empty arguments, checking is_array to avoid strings and empty strings
+        if(!empty($customerDetailsArray)&&!empty($orderDetailsArray)&& is_array($customerDetailsArray) && is_array($orderDetailsArray))
         {	
-	        if($this->validateProductDetails($productDetailsArray)
+	        if($this->validateProductDetails($productDetailsArray) //check for null or empty $productDetails is present inside the function;
 	        	&& $this->validateOrderDetails($orderDetailsArray)
 	        	&& $this->validateCustomerDetails($customerDetailsArray)
 	        	&& $this->validateAdditionalDetails($additionalParametersArray)
@@ -176,8 +177,9 @@ class GharpayAPI
 	        	}
 	        	else 
 	        		throw new GharpayAPIException('Error occurred while invoking the API.',0);
-	        	
+	        } 	
         }
+        else throw new InvalidArgumentException('Invalid arguments passed');
     }
     /**
      * 
@@ -504,7 +506,9 @@ class GharpayAPI
      * @throws InvalidArgumentException
      */
     private function validateOrderDetails($orderDetails)
-    { 	
+    {
+      if(!empty($orderDetails)&&is_array($orderDetails))
+      { 	
     	if(!isset($orderDetails['deliveryDate'])|| empty($orderDetails['deliveryDate'])
     	|| !$this->validateDate($orderDetails['deliveryDate']))
     	{
@@ -519,13 +523,21 @@ class GharpayAPI
     			throw new InvalidArgumentException("Oops! Delivery date is before today's date");
     		}
     	}
+    	$orderDetails['pincode']=trim($orderDetails['pincode']);
     	if(is_null($orderDetails['pincode']) || !isset($orderDetails['pincode']) || empty($orderDetails['pincode']) || strlen((string)$orderDetails['pincode'])<>6)
     		throw new InvalidArgumentException("Oops! Pincode is missing or Invalid");
+    	$orderDetails['orderAmount']=trim($orderDetails['orderAmount']);
     	if(!isset($orderDetails['orderAmount'])||empty($orderDetails['orderAmount']))
     		throw new InvalidArgumentException("Oops! Total Order Amount is missing");
+    	$orderDetails['clientOrderID']=trim($orderDetails['clientOrderID']);
     	if(!isset($orderDetails['clientOrderID'])||empty($orderDetails['clientOrderID']))
     		throw new InvalidArgumentException("Oops! Client Order ID is missing");
-    	return true;   	
+    	return true;
+      }
+      else
+      {
+      	throw new InvalidArgumentException('Invalid Order Details argument');
+      }   	
     }
     /**
      * 
@@ -583,8 +595,8 @@ class GharpayAPI
      * @return boolean
      */ 		
     private function validateProductDetails($productDetails)
-        {
-        	if($productDetails!==null && !empty($productDetails))
+    {
+        	if($productDetails!==null && !empty($productDetails) && is_array($productDetails))
         	{
         		foreach($productDetails as $pd)
         		{
@@ -627,7 +639,7 @@ class GharpayAPI
 	 */
 	private function validateProductIds($productIdArray)
 	{
-		if($productIdArray!=null)
+		if($productIdArray!=null && !empty($productIdArray) && is_array($productIdArray))
 		{
 			foreach($productIdArray as $pid)
 			{

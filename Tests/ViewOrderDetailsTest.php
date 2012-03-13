@@ -1,5 +1,5 @@
 <?php
-require_once ('PHP-Library'.DIRECTORY_SEPARATOR.'GharpayAPI.php');
+require_once dirname(__File__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'GharpayAPI.php';
 class ViewOrderDetailsTest extends PHPUnit_Framework_TestCase {
 
 	private $cDetails;

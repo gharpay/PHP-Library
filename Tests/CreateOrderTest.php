@@ -1,6 +1,6 @@
 <?php
 //require_once ('PHP-Library'.DIRECTORY_SEPARATOR.'GharpayAPI.php');
-require_once '/home/khaja/public_html'.DIRECTORY_SEPARATOR.'PHP-Library'.DIRECTORY_SEPARATOR.'GharpayAPI.php';
+require_once dirname(__File__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'GharpayAPI.php';
 class CreateOrderTest extends PHPUnit_Framework_TestCase 
 {
 
@@ -71,9 +71,8 @@ class CreateOrderTest extends PHPUnit_Framework_TestCase
 	}
 	public function testnullcDetails()
 	{
-		$this->cDetails=null;
 		$this->setExpectedException('InvalidArgumentException');
-		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
+		$response=$this->gpapi->createOrder(null,$this->oDetails,$this->pDetails);
 	}
 	
 	//customer Details
@@ -161,13 +160,13 @@ class CreateOrderTest extends PHPUnit_Framework_TestCase
 
 	public function testEmptyClientIdInODetails()
 	{
-		$this->oDetails['clientOrderId']='  ';
+		$this->oDetails['clientOrderID']='  ';
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);		
 	}
 	public function testNullClientIdInODetails()
 	{
-		$this->oDetails['clientOrderId']=null;
+		$this->oDetails['clientOrderID']=null;
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
 	}
@@ -212,12 +211,13 @@ class CreateOrderTest extends PHPUnit_Framework_TestCase
 	{
 		$this->pDetails='  ';		
 	}
-	public function testNullPDetails()
-	{
-		$this->pDetails=null;
-		$this->setExpectedException('InvalidArgumentException');
-		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
-	}
+//  pDetails canbe null;
+// 	public function testNullPDetails()
+// 	{
+// 		$this->pDetails=null;
+// 		$this->setExpectedException('InvalidArgumentException');
+// 		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
+// 	}
 	public function testNullProdQty()
 	{
 		$this->pDetails['0']['productQuantity']=null;
