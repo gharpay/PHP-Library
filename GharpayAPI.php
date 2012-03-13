@@ -514,7 +514,7 @@ class GharpayAPI
     			throw new InvalidArgumentException("Oops! Delivery date is before today's date");
     		}
     	}
-    	if(!isset($orderDetails['pincode'])||empty($orderDetails['pincode']) || strlen((string)$orderDetails['pincode'])<>6)
+    	if(is_null($orderDetails['pincode']) || !isset($orderDetails['pincode']) || empty($orderDetails['pincode']) || strlen((string)$orderDetails['pincode'])<>6)
     		throw new InvalidArgumentException("Oops! Pincode is missing or Invalid");
     	if(!isset($orderDetails['orderAmount'])||empty($orderDetails['orderAmount']))
     		throw new InvalidArgumentException("Oops! Total Order Amount is missing");

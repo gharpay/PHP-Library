@@ -72,17 +72,17 @@ class CancelOrderTest extends PHPUnit_Framework_TestCase {
 		$this->assertNotEmpty($response['gharpayOrderId']);
 		$this->assertNotEmpty($response['result']);
 	}
-	public function testNotOk()
+	public function testInvalidGharpayId()
 	{
 		$this->setExpectedException("GharpayAPIException");
 		$response=$this->gpapi->cancelOrder('GW-222-247');
 	}
-	public function testNull()
+	public function testNullGharpayId()
 	{
 		$this->setExpectedException("InvalidArgumentException");
 		$response=$this->gpapi->cancelOrder(null);
 	}
-	public function testEmpty()
+	public function testEmptyGharpayId()
 	{
 		$this->setExpectedException("InvalidArgumentException");
 		$response=$this->gpapi->cancelOrder('  ');

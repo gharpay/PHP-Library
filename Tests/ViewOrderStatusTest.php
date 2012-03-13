@@ -65,8 +65,7 @@ class ViewOrderStatusTest extends PHPunit_Framework_TestCase
 * Test ViewOrderStatus
 *
 */
-	 //TODO: Null & empty checks
-	 public function testOK()
+	 public function testOkGharpayOrderId()
 	 {
 	 	$resp=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
 	 	$response=$this->gpapi->viewOrderStatus($resp['gharpayOrderId']);
@@ -74,7 +73,7 @@ class ViewOrderStatusTest extends PHPunit_Framework_TestCase
 	 	$this->assertNotEmpty($response['status']);
 	 } 
 	
-	 public function testNotOK()
+	 public function testNotOKGharpayOrderId()
 	 {
 	 	$response=$this->gpapi->viewOrderStatus('88747');
 	 	$this->assertNotEmpty($response['gharpayOrderId']);
