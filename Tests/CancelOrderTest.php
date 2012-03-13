@@ -1,4 +1,4 @@
-<?php
+<?php	
 require_once ('PHP-Library'.DIRECTORY_SEPARATOR.'GharpayAPI.php');
 class CancelOrderTest extends PHPUnit_Framework_TestCase {
 	
@@ -17,7 +17,7 @@ class CancelOrderTest extends PHPUnit_Framework_TestCase {
 				'contactNo'=>'8888888888',
 				'firstName'=>'Khaja',
 				'lastName'=>'Naquiuddin',
-				'email'=>'khaja@gharpay.in'
+				'email'=>'name@example.in'
 		);
 		$this->oDetails = array(
 				'pincode'=>'400057',
@@ -86,6 +86,5 @@ class CancelOrderTest extends PHPUnit_Framework_TestCase {
 	{
 		$this->setExpectedException("InvalidArgumentException");
 		$response=$this->gpapi->cancelOrder('  ');
-	}
-	
+	}	
 }

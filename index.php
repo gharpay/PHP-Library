@@ -46,7 +46,7 @@ require_once 'System.php';
          );
 //             array_push($pDetails, $pDet1);
 //             array_push($pDetails, $pDet2);
-        $response= $gpapi->cancelProductsFromOrder('GW-222-0006947-994', 4000, $productIds);
+//        $response= $gpapi->cancelProductsFromOrder('GW-222-0006947-994', 4000, $productIds);
 //        $result = $gpapi->createOrder($cDetails, $oDetails, $pDetails);
 //        var_dump($result);
 //        $resp = $gpapi->viewOrderStatus('GW-222-0006435-356');
@@ -62,7 +62,8 @@ require_once 'System.php';
         // $response=$gpapi->getPincodesInCity('karimnagar');
 // 	 $resp=$gpapi->cancelOrder('GW-222-0006247-910');
 		 //$response=$gpapi->isCityPresent('Karimnagar');
-		 
-		 var_dump($response);
+       // $pDetails[0]['unitCost']=' ';
+        //$response=$gpapi->addProductsToOrder('GW-222-0006921-775',16000,$pDetails);
+		 echo $_SERVER['DOCUMENT_ROOT'];
 		// var_dump(class_exists('System', false));
 ?>

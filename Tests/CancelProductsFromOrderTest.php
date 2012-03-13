@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__).'/../GharpayAPI.php';
+require_once ('PHP-Library'.DIRECTORY_SEPARATOR.'GharpayAPI.php');
 class CancelProductsFromOrderTest extends PHPunit_Framework_TestCase
 {
 	private $cDetails;
@@ -72,7 +72,8 @@ class CancelProductsFromOrderTest extends PHPunit_Framework_TestCase
 		$this->assertNotEmpty($response['gharpayOrderId']);
 		$this->assertEquals($response['result'],'true');
 	}
-	public function testNotOk()
+	//Gharpay Id
+	public function testInvalidGharpayId()
 	{
 		$this->setExpectedException("GharpayAPIException");
 		$response=$this->gpapi->cancelProductsFromOrder('0006879-299',4000, $this->productIds);
@@ -86,12 +87,18 @@ class CancelProductsFromOrderTest extends PHPunit_Framework_TestCase
 	public function testEmptyGharpayID()
 	{
 		$this->setExpectedException('InvalidArgumentException');
-		$response=$this->gpapi->cancelProductsFromOrder('', 4000, $this->productIds);
+		$response=$this->gpapi->cancelProductsFromOrder('  ', 4000, $this->productIds);
 	}
+	// Total Order Amount Id
 	public function testNullOrderAmount()
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->cancelProductsFromOrder('GW-222-0006946-385', null, $this->productIds);
+	}
+	public function testEmptyOrderAmount()
+	{
+		$this->setExpectedException('InvalidArgumentException');
+		$response=$this->gpapi->cancelProductsFromOrder('GW-222-0006946-385', '  ', $this->productIds);
 	}
 	public function testStringOrderAmount()
 	{
@@ -99,6 +106,18 @@ class CancelProductsFromOrderTest extends PHPunit_Framework_TestCase
 		$this->assertNotEmpty($response['gharpayOrderId']);
 		$this->assertNotEmpty($response['result']);
 	}
+	//Product Ids array
+	public function testNullProductIds()
+	{
+		$this->setExpectedException('InvalidArgumentException');
+		$response=$this->gpapi->cancelProductsFromOrder('GW-222-0006946-385', 6000, '  ');
+	}
+	public function testNullProductIds()
+	{
+		$this->setExpectedException('InvalidArgumentException');
+		$response=$this->gpapi->cancelProductsFromOrder('GW-222-0006946-385', 6000, null);
+	}
+	//Product Ids
 	public function testNullProductId()
 	{
 		$this->productIds[0]=null;
@@ -107,7 +126,7 @@ class CancelProductsFromOrderTest extends PHPunit_Framework_TestCase
 	}
 	public function testEmptyProductId()
 	{
-		$this->productIds[0]='  ';
+		$this->productIds[1]='  ';
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->cancelProductsFromOrder('GW-222-0006946-385', null, $this->productIds);
 	}

@@ -136,45 +136,47 @@ class GharpayAPI
     public function createOrder($customerDetailsArray, $orderDetailsArray,$productDetailsArray=null, $additionalParametersArray=null)
     {
         $arr=array();
-        if($this->validateProductDetails($productDetailsArray)
-        	&& $this->validateOrderDetails($orderDetailsArray)
-        	&& $this->validateCustomerDetails($customerDetailsArray)
-        	&& $this->validateAdditionalDetails($additionalParametersArray)
-        )	
-        {   
-        	$deliveryDate= strtotime($orderDetailsArray['deliveryDate']);
-        	$deliveryDate= date('d-m-Y',$deliveryDate);
-
-        	$orderDetailsArray['deliveryDate'] = $deliveryDate; 
-        	$orderDetailsArray['productDetails']=$productDetailsArray;
-        	$arr = array(
-                'customerDetails'=>$customerDetailsArray,
-                'orderDetails'=>$orderDetailsArray
-                );
-				
-        	if($additionalParametersArray!==null)
-        	{
-           	 $arr['additionalInformation']['parameters'] = $additionalParametersArray;
-        	}        
-        	$xml=Array2XML::createXML('transaction', $arr);
-        	$xml=$xml->saveXML();
-        	
-        	$response_arr = $this->callGharpayAPI('createOrder','post', $xml);
-      		
-        	if(!isset($response_arr['createOrderResponse']['errorCode']))
-        	{
-        		$response_mod = array() ;
-        		$response_mod['clientOrderId']=$response_arr['createOrderResponse']['clientOrderID'];
-        		$response_mod['gharpayOrderId']=$response_arr['createOrderResponse']['orderID'];
-        		return $response_mod;
-        	}
-        	else if(!($response_arr['createOrderResponse']['errorMessage']=='null')|| !($response_arr['createOrderResponse']['errorCode'])=='0')
-        	{  
-        		throw new GharpayAPIException($response_arr['createOrderResponse']['errorMessage'],$response_arr['createOrderResponse']['errorCode']);    
-        	}
-        	else 
-        		throw new GharpayAPIException('Error occurred while invoking the API.',0);
-        	
+        if(!empty($customerDetailsArray)&&!empty($orderDetailsArray)&&)
+        {	
+	        if($this->validateProductDetails($productDetailsArray)
+	        	&& $this->validateOrderDetails($orderDetailsArray)
+	        	&& $this->validateCustomerDetails($customerDetailsArray)
+	        	&& $this->validateAdditionalDetails($additionalParametersArray)
+	        )	
+	        {   
+	        	$deliveryDate= strtotime($orderDetailsArray['deliveryDate']);
+	        	$deliveryDate= date('d-m-Y',$deliveryDate);
+	
+	        	$orderDetailsArray['deliveryDate'] = $deliveryDate; 
+	        	$orderDetailsArray['productDetails']=$productDetailsArray;
+	        	$arr = array(
+	                'customerDetails'=>$customerDetailsArray,
+	                'orderDetails'=>$orderDetailsArray
+	                );
+					
+	        	if($additionalParametersArray!==null)
+	        	{
+	           	 $arr['additionalInformation']['parameters'] = $additionalParametersArray;
+	        	}        
+	        	$xml=Array2XML::createXML('transaction', $arr);
+	        	$xml=$xml->saveXML();
+	        	
+	        	$response_arr = $this->callGharpayAPI('createOrder','post', $xml);
+	      		
+	        	if(!isset($response_arr['createOrderResponse']['errorCode']))
+	        	{
+	        		$response_mod = array() ;
+	        		$response_mod['clientOrderId']=$response_arr['createOrderResponse']['clientOrderID'];
+	        		$response_mod['gharpayOrderId']=$response_arr['createOrderResponse']['orderID'];
+	        		return $response_mod;
+	        	}
+	        	else if(!($response_arr['createOrderResponse']['errorMessage']=='null')|| !($response_arr['createOrderResponse']['errorCode'])=='0')
+	        	{  
+	        		throw new GharpayAPIException($response_arr['createOrderResponse']['errorMessage'],$response_arr['createOrderResponse']['errorCode']);    
+	        	}
+	        	else 
+	        		throw new GharpayAPIException('Error occurred while invoking the API.',0);
+	        	
         }
     }
     /**
@@ -197,37 +199,40 @@ class GharpayAPI
     public function addProductsToOrder($gharpayOrderId,$orderTotalAmount,$productDetailsArray)
     {
     	$gharpayOrderId=trim($gharpayOrderId);
+    	$orderTotalAmount= trim($orderTotalAmount);
+    	if(is_string($productDetailsArray)) $productDetailsArray = trim($productDetailsArray);
     	  	$arr=array();
-	        if(!is_null($productDetailsArray)&&$this->validateProductDetails($productDetailsArray)&& (!empty($gharpayOrderId) && !empty($orderTotalAmount)))
+	        if(!empty($productDetailsArray)&& (!empty($gharpayOrderId) && !empty($orderTotalAmount)))
 	        {
-	        	 $orderDetails=array(
-	            'orderAmount'=>$orderTotalAmount,
-	            'orderID'=>$gharpayOrderId,
-	        	'productDetails'=>$productDetailsArray
-	        	);
-	        	$xml=Array2XML::createXML('addProductsToOrder',$orderDetails);
-	    		$xml=$xml->saveXML();
-	    		$response = $this->callGharpayAPI('addProductsToOrder','post', $xml);
-	    		if(!isset($response['addProductsToOrderResponse']['errorCode']))
-	    		{
-	    			$resp_mod['gharpayOrderId'] = $response['addProductsToOrderResponse']['orderID'];
-	    			$resp_mod['result'] = $response['addProductsToOrderResponse']['result'];
-	    			return $resp_mod;
-	    		}
-	    		else if(!empty($response['addProductsToOrderResponse']['errorMessage'] 	) || !empty($response['addProductsToOrderResponse']['errorCode']))
-	    		{
-	    			throw new GharpayAPIException($response['addProductsToOrderResponse']['errorMessage'],$response['addProductsToOrderResponse']['errorCode']);
-	    		}
-	    		else 
-	        		throw new GharpayAPIException('Error occurred while invoking the API',0);        	
+	        	if($this->validateProductDetails($productDetailsArray))
+	        	{
+		        	 $orderDetails=array(
+		            'orderAmount'=>$orderTotalAmount,
+		            'orderID'=>$gharpayOrderId,
+		        	'productDetails'=>$productDetailsArray
+		        	);
+		        	$xml=Array2XML::createXML('addProductsToOrder',$orderDetails);
+		    		$xml=$xml->saveXML();
+		    		$response = $this->callGharpayAPI('addProductsToOrder','post', $xml);
+		    		if(!isset($response['addProductsToOrderResponse']['errorCode']))
+		    		{
+		    			$resp_mod['gharpayOrderId'] = $response['addProductsToOrderResponse']['orderID'];
+		    			$resp_mod['result'] = $response['addProductsToOrderResponse']['result'];
+		    			return $resp_mod;
+		    		}
+		    		else if(!empty($response['addProductsToOrderResponse']['errorMessage'] 	) || !empty($response['addProductsToOrderResponse']['errorCode']))
+		    		{
+		    			throw new GharpayAPIException($response['addProductsToOrderResponse']['errorMessage'],$response['addProductsToOrderResponse']['errorCode']);
+		    		}
+		    		else 
+		        		throw new GharpayAPIException('Error occurred while invoking the API',0);		    
+	        	}	        	        	
 	        }
 	        else
-	        	throw new InvalidArgumentException('arguments are either null or empty');
-    	
+	        	throw new InvalidArgumentException('arguments are either null or empty');   	
     }
     
     /**
-     * 
      * @param string $gharpayOrderId
      * @throws GharpayAPIException
      * @return array $response i.e. $response['status'],$response['gharpayOrderId']
@@ -579,7 +584,7 @@ class GharpayAPI
      */ 		
     private function validateProductDetails($productDetails)
         {
-        	if($productDetails!==null)
+        	if($productDetails!==null && !empty($productDetails))
         	{
         		foreach($productDetails as $pd)
         		{
@@ -598,7 +603,8 @@ class GharpayAPI
         			}
         		}
         	}
-        	return true;
+        	
+        	//return true;
         }
         /**
          * @param string $date

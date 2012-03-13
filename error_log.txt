@@ -83,3 +83,4 @@ Stack trace:
 #1 /home/khaja/public_html/PHP-Library/index.php(66): GharpayAPI->addProductsToOrder('GW-222-0006921-...', 16000, Array)
 #2 {main}
   thrown in /home/khaja/public_html/PHP-Library/GharpayAPI.php on line 597
+[13-Mar-2012 11:18:34] PHP Notice:  Use of undefined constant DOCUMENT_ROOT - assumed 'DOCUMENT_ROOT' in /home/khaja/public_html/PHP-Library/index.php on line 67

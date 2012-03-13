@@ -1,5 +1,6 @@
 <?php
-require_once ('PHP-Library'.DIRECTORY_SEPARATOR.'GharpayAPI.php');
+//require_once ('PHP-Library'.DIRECTORY_SEPARATOR.'GharpayAPI.php');
+require_once '/home/khaja/public_html'.DIRECTORY_SEPARATOR.'PHP-Library'.DIRECTORY_SEPARATOR.'GharpayAPI.php';
 class CreateOrderTest extends PHPUnit_Framework_TestCase 
 {
 
