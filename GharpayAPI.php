@@ -136,26 +136,30 @@ class GharpayAPI
     public function createOrder($customerDetailsArray, $orderDetailsArray,$productDetailsArray=null, $additionalParametersArray=null)
     {
         $arr=array();
+        $validate = false;
         //checking null and empty arguments, checking is_array to avoid strings and empty strings
-        if(!empty($customerDetailsArray)&&!empty($orderDetailsArray)&& is_array($customerDetailsArray) && is_array($orderDetailsArray))
+       if(!empty($customerDetailsArray)&&!empty($orderDetailsArray)&& is_array($customerDetailsArray) && is_array($orderDetailsArray))
         {	
 	        if($this->validateProductDetails($productDetailsArray) //check for null or empty $productDetails is present inside the function;
 	        	&& $this->validateOrderDetails($orderDetailsArray)
 	        	&& $this->validateCustomerDetails($customerDetailsArray)
 	        	&& $this->validateAdditionalDetails($additionalParametersArray)
-	        )	
-	        {   
+	        )  	
+	    	echo "inside validate";
 	        	$deliveryDate= strtotime($orderDetailsArray['deliveryDate']);
 	        	$deliveryDate= date('d-m-Y',$deliveryDate);
 	
-	        	$orderDetailsArray['deliveryDate'] = $deliveryDate; 
-	        	$orderDetailsArray['productDetails']=$productDetailsArray;
+	        	$orderDetailsArray['deliveryDate'] = $deliveryDate;
+	        	if(is_array($productDetailsArray) && !empty($productDetailsArray)) 
+	        	{
+	        		$orderDetailsArray['productDetails']=$productDetailsArray;
+	        	}
 	        	$arr = array(
 	                'customerDetails'=>$customerDetailsArray,
 	                'orderDetails'=>$orderDetailsArray
 	                );
 					
-	        	if($additionalParametersArray!==null)
+	        	if(is_array($additionalParametersArray) && !empty($additionalParametersArray))
 	        	{
 	           	 $arr['additionalInformation']['parameters'] = $additionalParametersArray;
 	        	}        
@@ -177,9 +181,9 @@ class GharpayAPI
 	        	}
 	        	else 
 	        		throw new GharpayAPIException('Error occurred while invoking the API.',0);
-	        } 	
-        }
-        else throw new InvalidArgumentException('Invalid arguments passed');
+	    } 	
+        else 
+        	throw new InvalidArgumentException('Invalid arguments passed');
     }
     /**
      * 
@@ -508,7 +512,8 @@ class GharpayAPI
     private function validateOrderDetails($orderDetails)
     {
       if(!empty($orderDetails)&&is_array($orderDetails))
-      { 	
+      { 
+      	$orderDetails['deliveryDate']=trim($orderDetails['deliveryDate']);	
     	if(!isset($orderDetails['deliveryDate'])|| empty($orderDetails['deliveryDate'])
     	|| !$this->validateDate($orderDetails['deliveryDate']))
     	{
@@ -567,26 +572,26 @@ class GharpayAPI
      */
     private function validateAdditionalDetails($additionalParametersArray)
     {
-    	if($additionalParametersArray['parameters']!==null)
+    	if(is_array($additionalParametersArray)&& !empty($additionalParametersArray))
     	{
-    		foreach($parameters as $param)
-    		{
-    			$param['name']=trim($param['name']);
-    			$param['value']=trim($param['value']);    			
-    			if(
-    			isset($param['name'])&&!empty($param['name'])
-    			&&isset($param['value'])&&!empty($param['value'])
-    			)
-    			{
-    				return true;			
-    			}
-    			else
-    			{
-		    		throw new InvalidArgumentException("Parameter Name or Value is missing in Additional Information");
-    			}
-    		}
+	    		foreach($parameters as $param)
+	    		{
+	    			$param['name']=trim($param['name']);
+	    			$param['value']=trim($param['value']);    			
+	    			if(isset($param['name'])&&!empty($param['name'])
+	    			   &&isset($param['value'])&&!empty($param['value'])
+	    			)
+	    			{
+	    				return true;			
+	    			}
+	    			else
+	    			{
+			    		throw new InvalidArgumentException("Parameter Name or Value is missing in Additional Information");
+	    			}
+	    		}    		
     	}
     	return true;
+    	
     }
     /**
      * 
@@ -596,7 +601,7 @@ class GharpayAPI
      */ 		
     private function validateProductDetails($productDetails)
     {
-        	if($productDetails!==null && !empty($productDetails) && is_array($productDetails))
+        	if( is_array($productDetails) && !empty($productDetails))
         	{
         		foreach($productDetails as $pd)
         		{
@@ -614,9 +619,8 @@ class GharpayAPI
         				throw new InvalidArgumentException("Product details array has missing or incorrect keys. Cannot call the Gharpay API");
         			}
         		}
-        	}
-        	
-        	//return true;
+        	}     	
+        	return true;
         }
         /**
          * @param string $date

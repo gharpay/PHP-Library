@@ -69,13 +69,19 @@ class CreateOrderTest extends PHPUnit_Framework_TestCase
 		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
 		$this->assertNotEmpty($response['gharpayOrderId']);
 	}
+	//customer Details
 	public function testnullcDetails()
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->createOrder(null,$this->oDetails,$this->pDetails);
 	}
+	public function testEmptyArraycDetails()
+	{
+		$this->cDetails=array();
+		$this->setExpectedException('InvalidArgumentException');
+		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
 	
-	//customer Details
+	}
 	public function testEmptycDetails()
 	{
 		$this->cDetails='  ';
@@ -126,12 +132,25 @@ class CreateOrderTest extends PHPUnit_Framework_TestCase
 		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
 	}
 	//Order Details
-	public function testEmptyODetails()
+	public function testnullODetails()
 	{	
 		$this->oDetails=null;
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
 	}
+	public function testEmptyODetails()
+	{
+		$this->oDetails='   ';
+		$this->setExpectedException('InvalidArgumentException');
+		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
+	}
+	public function testEmptyArrayODetails()
+	{
+		$this->oDetails=array();
+		$this->setExpectedException('InvalidArgumentException');
+		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
+	}
+	
 	// Order Details Pincode 
 	public function testNullPincodeInOrder()
 	{
@@ -209,15 +228,37 @@ class CreateOrderTest extends PHPUnit_Framework_TestCase
 	//product Details
 	public function testEmptyPDetails()
 	{
-		$this->pDetails='  ';		
+		$this->pDetails='  ';
+		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
+		$this->assertNotEmpty($response['gharpayOrderId']);
 	}
+//  Additional Parameters can be null
+	public function testEmptyaddDetails()
+	{
+		$this->parameters='  ';
+		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails, $this->parameters);
+		$this->assertNotEmpty($response['gharpayOrderId']);
+	}
+	public function testNulladdDetails()
+	{
+		$this->parameters=null;
+		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails, $this->parameters);
+		$this->assertNotEmpty($response['gharpayOrderId']);
+	}	
 //  pDetails canbe null;
-// 	public function testNullPDetails()
-// 	{
-// 		$this->pDetails=null;
-// 		$this->setExpectedException('InvalidArgumentException');
-// 		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
-// 	}
+	public function testNullPDetails()
+	{
+		$this->pDetails=null;
+		//$this->setExpectedException('InvalidArgumentException');
+		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
+		$this->assertNotEmpty($response['gharpayOrderId']);
+	}
+	public function testEmptyArrayPDetails()
+	{
+		$this->pDetails=array();
+		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
+		$this->assertNotEmpty($response['gharpayOrderId']);
+	}
 	public function testNullProdQty()
 	{
 		$this->pDetails['0']['productQuantity']=null;
