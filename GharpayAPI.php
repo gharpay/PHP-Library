@@ -73,6 +73,7 @@ class GharpayAPI
         
         //Setting the curl properties in order to invoke the function
         $ch = curl_init($url);
+        //setting  header property false to get response body;
         curl_setopt($ch, CURLOPT_HEADER,false);
         if($method=='post')
         {
@@ -85,8 +86,9 @@ class GharpayAPI
                                     'password:'.$this->getPassword(),
                                     'Content-Type:application/xml')
        				);
+        //calling Web Service and taking response
         $response = curl_exec($ch);
-        
+        //checking if response is recieved from server or any connection error occured;
         if($response)
         {
         	$response_array=XML2Array::createArray($response);
@@ -94,8 +96,7 @@ class GharpayAPI
         }
         else
         {
-        	throw new GharpayAPIException('There is a connection error, please check your internet connectivity');
-        	
+        	throw new GharpayAPIException('There is a connection error, please check your internet connectivity');        	
         }
     }
     
@@ -136,7 +137,6 @@ class GharpayAPI
     public function createOrder($customerDetailsArray, $orderDetailsArray,$productDetailsArray=null, $additionalParametersArray=null)
     {
         $arr=array();
-        $validate = false;
         //checking null and empty arguments, checking is_array to avoid strings and empty strings
        if(!empty($customerDetailsArray)&&!empty($orderDetailsArray)&& is_array($customerDetailsArray) && is_array($orderDetailsArray))
         {	
@@ -150,6 +150,7 @@ class GharpayAPI
 	        	$deliveryDate= date('d-m-Y',$deliveryDate);
 	
 	        	$orderDetailsArray['deliveryDate'] = $deliveryDate;
+	        	//The $productDetailsArray is optional;
 	        	if(is_array($productDetailsArray) && !empty($productDetailsArray)) 
 	        	{
 	        		$orderDetailsArray['productDetails']=$productDetailsArray;
@@ -158,7 +159,7 @@ class GharpayAPI
 	                'customerDetails'=>$customerDetailsArray,
 	                'orderDetails'=>$orderDetailsArray
 	                );
-					
+				//The $additionalPrarametersArray is optional;	
 	        	if(is_array($additionalParametersArray) && !empty($additionalParametersArray))
 	        	{
 	           	 $arr['additionalInformation']['parameters'] = $additionalParametersArray;
@@ -167,7 +168,7 @@ class GharpayAPI
 	        	$xml=$xml->saveXML();
 	        	
 	        	$response_arr = $this->callGharpayAPI('createOrder','post', $xml);
-	      		
+	      		//checking if any error response recieved
 	        	if(!isset($response_arr['createOrderResponse']['errorCode']))
 	        	{
 	        		$response_mod = array() ;
@@ -204,12 +205,13 @@ class GharpayAPI
      * @return array $resp_mod i.e. $resp_mod['gharpayOrderId], $resp_mod['result']
      */
     public function addProductsToOrder($gharpayOrderId,$orderTotalAmount,$productDetailsArray)
-    {
+    {	
     	$gharpayOrderId=trim($gharpayOrderId);
     	$orderTotalAmount= trim($orderTotalAmount);
+    	//checking $productDetailsArray is null or invalid before validateProductDetails() as it returns true by default;
     	if(is_string($productDetailsArray)) $productDetailsArray = trim($productDetailsArray);
     	  	$arr=array();
-	        if(!empty($productDetailsArray)&& (!empty($gharpayOrderId) && !empty($orderTotalAmount)))
+	        if(is_array($productDetailsArray)&&!empty($productDetailsArray)&& !empty($gharpayOrderId) && !empty($orderTotalAmount))
 	        {
 	        	if($this->validateProductDetails($productDetailsArray))
 	        	{
@@ -264,7 +266,7 @@ class GharpayAPI
 	        	throw new GharpayAPIException('Error occurred while invoking the API',0);
     	}
     	else 
-    		throw new InvalidArgumentException('$gharpayOrderId is null or empty');
+    		throw new InvalidArgumentException('gharpayOrderId is null or empty');
     }
     
     /**
@@ -512,7 +514,7 @@ class GharpayAPI
      */
     private function validateOrderDetails($orderDetails)
     {
-      if(!empty($orderDetails)&&is_array($orderDetails))
+      if(is_array($orderDetails)&&!empty($orderDetails))
       { 
       	$orderDetails['deliveryDate']=trim($orderDetails['deliveryDate']);	
     	if(!isset($orderDetails['deliveryDate'])|| empty($orderDetails['deliveryDate'])
@@ -552,7 +554,7 @@ class GharpayAPI
      * @return boolean
      */
     private function validateCustomerDetails($customerDetails)
-    {   if(empty($customerDetails))
+    {   if(!is_array($customerDetails)||empty($customerDetails))
     		throw new InvalidArgumentException('Customer Details array is either empty or null');
     	$customerDetails['firstName']=trim($customerDetails['firstName']);
     	$customerDetails['contactNo']=trim($customerDetails['contactNo']);
