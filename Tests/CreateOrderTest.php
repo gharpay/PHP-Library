@@ -238,7 +238,7 @@ class CreateOrderTest extends PHPUnit_Framework_TestCase
 		$this->parameters='  ';
 		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails, $this->parameters);
 		$this->assertNotEmpty($response['gharpayOrderId']);
-	}
+	}	
 	public function testNulladdDetails()
 	{
 		$this->parameters=null;

@@ -112,6 +112,11 @@ public function tearDown(){
 		$this->setExpectedException("InvalidArgumentException");
 		$response=$this->gpapi->addProductsToOrder('GW-222-0006921-775',16999,'  ');
 	}
+	public function testEmptyArraypDetails(){
+		$this->pDetails = array();
+		$this->setExpectedException("InvalidArgumentException");
+		$response=$this->gpapi->addProductsToOrder('GW-222-0006921-775',16999,$this->pDetails);
+	}
 	
 	//Product Details
 	public function testNullProdUnitCost()
@@ -125,8 +130,7 @@ public function tearDown(){
 		$this->pDetails['0']['unitCost']=null;
 		$this->setExpectedException("InvalidArgumentException");
 		$response=$this->gpapi->addProductsToOrder('GW-222-0006921-775',16000,$this->pDetails);
-	}
-	
+	}	
 	public function testNullProdQty()
 	{
 		$this->pDetails['0']['productQuantity']=null;

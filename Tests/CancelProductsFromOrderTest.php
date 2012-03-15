@@ -119,6 +119,11 @@ class CancelProductsFromOrderTest extends PHPunit_Framework_TestCase
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->cancelProductsFromOrder('GW-222-0006946-385', 6000, null);
 	}
+	public function testEmptyArrayProductIds()
+	{
+		$this->setExpectedException('InvalidArgumentException');
+		$response=$this->gpapi->cancelProductsFromOrder('GW-222-0006946-385', 6000, array());
+	}
 	//Product Ids
 	public function testNullProductId()
 	{

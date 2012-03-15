@@ -145,7 +145,7 @@ class GharpayAPI
 	        	&& $this->validateCustomerDetails($customerDetailsArray)
 	        	&& $this->validateAdditionalDetails($additionalParametersArray)
 	        )  	
-	    	echo "inside validate";
+	        {
 	        	$deliveryDate= strtotime($orderDetailsArray['deliveryDate']);
 	        	$deliveryDate= date('d-m-Y',$deliveryDate);
 	
@@ -181,6 +181,7 @@ class GharpayAPI
 	        	}
 	        	else 
 	        		throw new GharpayAPIException('Error occurred while invoking the API.',0);
+	        }
 	    } 	
         else 
         	throw new InvalidArgumentException('Invalid arguments passed');
