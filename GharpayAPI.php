@@ -1,8 +1,4 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  * GharpayAPI is a class Library that helps in integrating Gharpay API into clients
  * PHP applications easily.
@@ -404,7 +400,6 @@ class GharpayAPI
 	    		throw new InvalidArgumentException("Oops! Pincode is missing or Invalid");
 	    	
 	    	$response = $this->callGharpayAPI('isPincodePresent?pincode='.$pincode);
-	    	
 	    	if(!isset($response['isPincodePresentPresentResponse']['errorCode']))
 	        {	
 	    		return isset($response['isPincodePresentPresentResponse']['result']) && $response['isPincodePresentPresentResponse']['result'] == 'true' ? True : False ;
