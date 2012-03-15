@@ -72,7 +72,7 @@ public function tearDown(){
 	{
 		$response=$this->gpapi->addProductsToOrder('GW-222-0006921-775',16999,$this->pDetails);
 		$this->assertNotEmpty($response['gharpayOrderId']);
-		$this->assertNotEmpty($response['result']);
+		$this->assertTrue($response['result']);
 	}
 	//GharpayId
 	public function testInvalidGharpayId()

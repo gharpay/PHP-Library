@@ -226,7 +226,7 @@ class GharpayAPI
 		    		if(!isset($response['addProductsToOrderResponse']['errorCode']))
 		    		{
 		    			$resp_mod['gharpayOrderId'] = $response['addProductsToOrderResponse']['orderID'];
-		    			$resp_mod['result'] = $response['addProductsToOrderResponse']['result'];
+		    			$resp_mod['result'] = $response['addProductsToOrderResponse']['result']=='true'?true : false;
 		    			return $resp_mod;
 		    		}
 		    		else if(!empty($response['addProductsToOrderResponse']['errorMessage'] 	) || !empty($response['addProductsToOrderResponse']['errorCode']))
@@ -288,7 +288,7 @@ class GharpayAPI
 	        if(!isset($response['cancelOrderResponse']['errorCode']))
 	        {
 	        	$resp_mod['gharpayOrderId'] = $response['cancelOrderResponse']['orderID'];
-	        	$resp_mod['result'] = $response['cancelOrderResponse']['result'];
+	        	$resp_mod['result'] = $response['cancelOrderResponse']['result']=='true'?true : false;
 	        	return $resp_mod;
 	        }
 	        else if(!($response['cancelOrderResponse']['errorMessage']=='null')||!($response['cancelOrderResponse']['errorCode']=='0'))
@@ -331,7 +331,7 @@ class GharpayAPI
 	    	if(!isset($response['cancelProductsFromOrderResponse']['errorCode']))
 	    	{
 	    		$resp_mod['gharpayOrderId'] = $response['cancelProductsFromOrderResponse']['orderID'];
-	    		$resp_mod['result']=$response['cancelProductsFromOrderResponse']['result'];
+	    		$resp_mod['result']=$response['cancelProductsFromOrderResponse']['result']=='true'?true : false;
 	    		return $resp_mod;
 	    	}
 	    	else if(!($response['cancelProductsFromOrderResponse']['errorMessage']=='null')||!($response['cancelProductsFromOrderResponse']['errorCode']=='0'))

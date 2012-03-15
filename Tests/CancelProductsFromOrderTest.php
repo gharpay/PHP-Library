@@ -71,7 +71,7 @@ class CancelProductsFromOrderTest extends PHPunit_Framework_TestCase
 	{
 		$response=$this->gpapi->cancelProductsFromOrder('GW-222-0006946-385', 4000, $this->productIds);
 		$this->assertNotEmpty($response['gharpayOrderId']);
-		$this->assertEquals($response['result'],'true');
+		$this->assertTrue($response['result']);
 	}
 	//Gharpay Id
 	public function testInvalidGharpayId()
