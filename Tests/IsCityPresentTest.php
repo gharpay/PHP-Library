@@ -16,7 +16,7 @@ class IsCityPresentTest extends PHPUnit_Framework_TestCase {
 	
 	public function testOKisCityPresent()
 	{
-		$response=$this->gpapi->isCityPresent('Mumbai');
+		$response=$this->gpapi->isCityPresent('chennai');
 		$this->assertTrue($response);
 	}
 	public function testNotOKisCityPresent()

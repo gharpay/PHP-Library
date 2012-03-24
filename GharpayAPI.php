@@ -124,7 +124,8 @@ class GharpayAPI
      *   $productDetailsArray[1] = array (
      *         'productID'=>555555,
      *         'productQuantity'=>1,
-     *         'unitCost'=>1134
+     *         'unitCost'=>1134,
+     *         'productDescription'=>"Dell Vostro 1540"
      *       );
 	 * @param array $additionalParametersArray  eg: $additionalParametersArray[0]=array('name'=>'somename','value'=>'somevalue');
 	 * $additionalParametersArray[1]=array('name'=>'somename1','value'=>'somevalue1');							
@@ -136,18 +137,16 @@ class GharpayAPI
         //checking null and empty arguments, checking is_array to avoid strings and empty strings
        if(!empty($customerDetailsArray)&&!empty($orderDetailsArray)&& is_array($customerDetailsArray) && is_array($orderDetailsArray))
         {	
-	        if($this->validateProductDetails($productDetailsArray) //check for null or empty $productDetails is present inside the function;
-	        	&& $this->validateOrderDetails($orderDetailsArray)
-	        	&& $this->validateCustomerDetails($customerDetailsArray)
-	        	&& $this->validateAdditionalDetails($additionalParametersArray)
-	        )  	
+	        if($this->validateOrderDetails($orderDetailsArray)
+	        	&& $this->validateCustomerDetails($customerDetailsArray))  	
 	        {
 	        	$deliveryDate= strtotime($orderDetailsArray['deliveryDate']);
 	        	$deliveryDate= date('d-m-Y',$deliveryDate);
 	
 	        	$orderDetailsArray['deliveryDate'] = $deliveryDate;
 	        	//The $productDetailsArray is optional;
-	        	if(is_array($productDetailsArray) && !empty($productDetailsArray)) 
+	        	if(is_array($productDetailsArray) && !empty($productDetailsArray)&&
+	        			$this->validateProductDetails($productDetailsArray)) 
 	        	{
 	        		$orderDetailsArray['productDetails']=$productDetailsArray;
 	        	}
@@ -156,7 +155,8 @@ class GharpayAPI
 	                'orderDetails'=>$orderDetailsArray
 	                );
 				//The $additionalPrarametersArray is optional;	
-	        	if(is_array($additionalParametersArray) && !empty($additionalParametersArray))
+	        	if(is_array($additionalParametersArray) && !empty($additionalParametersArray)
+	        			&& $this->validateAdditionalDetails($additionalParametersArray))
 	        	{
 	           	 $arr['additionalInformation']['parameters'] = $additionalParametersArray;
 	        	}        
@@ -191,11 +191,13 @@ class GharpayAPI
      *         'productID'=>557777,
      *         'productQuantity'=>1,
      *         'unitCost'=>1599
+     *         'productDescription'=>'Sony Vaio E series'
      *       );
      *   $productDetailsArray[1] = array (
      *         'productID'=>555555,
      *         'productQuantity'=>1,
      *         'unitCost'=>1134
+     *         'productDescription'=>'Dell Vostro 1540'
      *       ); 
      * @throws GharpayAPIException
      * @return array $resp_mod i.e. $resp_mod['gharpayOrderId], $resp_mod['result']
@@ -606,8 +608,9 @@ class GharpayAPI
         			$pd['productID']=trim($pd['productID']);
         			$pd['productQuantity']=trim($pd['productQuantity']);
         			$pd['unitCost']=trim($pd['unitCost']);
-        			if(isset($pd['productID'])&&isset($pd['productQuantity'])&&isset($pd['unitCost'])&&
-        			!empty($pd['productID'])&&!empty($pd['productQuantity'])&&!empty($pd['unitCost'])
+        			$pd['productDescription']=trim($pd['productDescription']);
+        			if(isset($pd['productID'])&&isset($pd['productQuantity'])&&isset($pd['unitCost'])&&isset($pd['productDescription'])&&
+        			!empty($pd['productID'])&&!empty($pd['productQuantity'])&&!empty($pd['unitCost'])&&!empty($pd['productDescription']) 
         			)
         			{
         				return true;        					        				    			

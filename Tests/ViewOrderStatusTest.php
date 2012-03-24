@@ -29,14 +29,16 @@ class ViewOrderStatusTest extends PHPunit_Framework_TestCase
 		$this->prod1 = array (
 				'productID'=>884888,
 				'productQuantity'=>1,
-				'unitCost'=>1500
+				'unitCost'=>1500,
+				'productDescription'=>'Dell Vostro 1540'
 		);
 		$this->pDetails=array();
 		array_push($this->pDetails,$this->prod1);
 		$this->prod2 = array (
 				'productID'=>88878755,
 				'productQuantity'=>1,
-				'unitCost'=>1566
+				'unitCost'=>1566,
+				'productDescription'=>'Dell Vostro 1540'
 		);
 		array_push($this->pDetails,$this->prod2);
 

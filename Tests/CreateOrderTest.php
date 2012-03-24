@@ -31,14 +31,16 @@ class CreateOrderTest extends PHPUnit_Framework_TestCase
 		$this->prod1 = array (
 				'productID'=>884888,
 				'productQuantity'=>1,
-				'unitCost'=>1500
+				'unitCost'=>1500,
+				'productDescription'=>'Dell Vostro 1540'
 		);
 		$this->pDetails=array();
 		array_push($this->pDetails,$this->prod1);
 		$this->prod2 = array (
 				'productID'=>88878755,
 				'productQuantity'=>1,
-				'unitCost'=>1566
+				'unitCost'=>1566,
+				'productDescription'=>'Sony Vaio E series 13 inches'
 		);
 		array_push($this->pDetails,$this->prod2);
 	
@@ -46,7 +48,8 @@ class CreateOrderTest extends PHPUnit_Framework_TestCase
 				'name'=>'somename',
 				'value'=>'somevalue'
 		);
-		$this->parameters[1]=array(	  'name'=>'somename',
+		$this->parameters[1]=array(	  
+				'name'=>'somename',
 				'value'=>'somevalue'
 		);
 		$this->productIds=array(
@@ -292,6 +295,18 @@ class CreateOrderTest extends PHPUnit_Framework_TestCase
 	public function testEmptyProdUnitCost()
 	{
 		$this->pDetails['0']['unitCost']='   ';
+		$this->setExpectedException('InvalidArgumentException');
+		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
+	}
+	public function testNullProdDesc()
+	{
+		$this->pDetails['0']['productDescription']=null;
+		$this->setExpectedException('InvalidArgumentException');
+		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
+	}
+	public function testEmptyProdDesc()
+	{
+		$this->pDetails['0']['productDescription']='  ';
 		$this->setExpectedException('InvalidArgumentException');
 		$response=$this->gpapi->createOrder($this->cDetails,$this->oDetails,$this->pDetails);
 	}
