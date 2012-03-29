@@ -574,7 +574,7 @@ class GharpayAPI
     {
     	if(is_array($additionalParametersArray)&& !empty($additionalParametersArray))
     	{
-	    		foreach($parameters as $param)
+	    		foreach($additionalParametersArray as $param)
 	    		{
 	    			$param['name']=trim($param['name']);
 	    			$param['value']=trim($param['value']);    			
