@@ -177,7 +177,7 @@ class GharpayAPI
 	        		throw new GharpayAPIException($response_arr['createOrderResponse']['errorMessage'],$response_arr['createOrderResponse']['errorCode']);    
 	        	}
 	        	else 
-	        		throw new GharpayAPIException('Error occurred while invoking the API.',0);
+	        		throw new GharpayAPIException('Invalid credentials or invalid web service URL',0);
 	        }
 	    } 	
         else 
@@ -232,7 +232,7 @@ class GharpayAPI
 		    			throw new GharpayAPIException($response['addProductsToOrderResponse']['errorMessage'],$response['addProductsToOrderResponse']['errorCode']);
 		    		}
 		    		else 
-		        		throw new GharpayAPIException('Error occurred while invoking the API',0);		    
+		        		throw new GharpayAPIException('Invalid credentials or invalid web service URL',0);		    
 	        	}	        	        	
 	        }
 	        else
@@ -261,7 +261,7 @@ class GharpayAPI
 	        		throw new GharpayAPIException($response['viewOrderStatusResponse']['errorMessage'],$response['viewOrderStatusResponse']['errorCode']);
 	        }
 	        else
-	        	throw new GharpayAPIException('Error occurred while invoking the API',0);
+	        	throw new GharpayAPIException('Invalid credentials or invalid web service URL',0);
     	}
     	else 
     		throw new InvalidArgumentException('gharpayOrderId is null or empty');
@@ -294,7 +294,7 @@ class GharpayAPI
 	        		throw new GharpayAPIException($response['cancelOrderResponse']['errorMessage'],$response['cancelOrderResponse']['errorCode']);
 	        }
 	        else
-	        	throw new GharpayAPIException('Error occurred while invoking the API',0);
+	        	throw new GharpayAPIException('Invalid credentials or invalid web service URL',0);
     	}
     	else 
     		throw new InvalidArgumentException("gharpayOrderId is either null or empty");
@@ -337,7 +337,7 @@ class GharpayAPI
 	    		throw new GharpayAPIException($response['cancelProductsFromOrderResponse']['errorMessage'],$response['cancelProductsFromOrderResponse']['errorCode']);
 	    	}
 	    	else
-	    		throw new GharpayAPIException('Error occurred while invoking the API',0);
+	    		throw new GharpayAPIException('Invalid credentials or invalid web service URL',0);
     	}
     	else throw new InvalidArgumentException('Arguments are either invalid or null');
    }
@@ -382,7 +382,7 @@ class GharpayAPI
 	    		throw new GharpayAPIException("Unable to locate the order in the system");
 	    	}
 	    	else
-	    		throw new GharpayAPIException('Error occurred while invoking the API',0);
+	    		throw new GharpayAPIException('Invalid credentials or invalid web service URL',0);
     	}
     	else throw new InvalidArgumentException('argument is either null or empty');
     }
@@ -412,7 +412,7 @@ class GharpayAPI
 	    			throw new GharpayAPIException($response['isPincodePresentPresentResponse']['errorMessage'],$response['isPincodePresentPresentResponse']['errorCode']);
 	    	}
 	    	else
-	    			throw new GharpayAPIException('Error occurred while invoking the API',0);
+	    			throw new GharpayAPIException('Invalid credentials or invalid web service URL',0);
     	}
     	else throw new InvalidArgumentException('argument is either null or empty');
     }
@@ -432,7 +432,7 @@ class GharpayAPI
     		throw new GharpayAPIException($response['getCityListResponse']['errorMessage'],$response['getCityListResponse']['errorCode']);
     	}
     	else
-    		throw new GharpayAPIException('Error occurred while invoking the API',0);
+    		throw new GharpayAPIException('Invalid credentials or invalid web service URL',0);
     	
     }
     /**
@@ -455,7 +455,7 @@ class GharpayAPI
 	    		throw new GharpayAPIException($response['getPincodesInCityResponse']['errorMessage'],$response['getPincodesInCityResponse']['errorCode']);
 	    	}
 	    	else
-	    		throw new GharpayAPIException('Error occurred while invoking the API',0);
+	    		throw new GharpayAPIException('Invalid credentials or invalid web service URL',0);
     	}
     	else  throw new InvalidArgumentException('argument is either null or empty');
     }
@@ -480,7 +480,7 @@ class GharpayAPI
 	    		throw new GharpayAPIException($response['isCityPresentResponse']['errorMessage'],$response['isCityPresentResponse']['errorCode']);
 	    	}
 	    	else
-	    		throw new GharpayAPIException('Error occurred while invoking the API',0);
+	    		throw new GharpayAPIException('Invalid credentials or invalid web service URL',0);
 		}
 		else throw new InvalidArgumentException('argument is either null or empty');
     }
@@ -500,7 +500,7 @@ class GharpayAPI
     		throw new GharpayAPIException($response['getAllPincodesResponse']['errorMessage'],$response['getAllPincodesResponse']['errorCode']);
     	}
     	else
-    		throw new GharpayAPIException('Error occurred while invoking the API',0);
+    		throw new GharpayAPIException('Invalid credentials or invalid web service URL',0);
     }
     
     //Validation starts from Here
