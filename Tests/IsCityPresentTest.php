@@ -19,6 +19,11 @@ class IsCityPresentTest extends PHPUnit_Framework_TestCase {
 		$response=$this->gpapi->isCityPresent('chennai');
 		$this->assertTrue($response);
 	}
+	public function testOKisCityWithSpacePresent()
+	{
+		$response=$this->gpapi->isCityPresent('Navi Mumbai');
+		$this->assertTrue($response);
+	}
 	public function testNotOKisCityPresent()
 	{
 		$response=$this->gpapi->isCityPresent('karimnagar');

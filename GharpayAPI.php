@@ -445,7 +445,7 @@ class GharpayAPI
     	$cityName=trim($cityName);
     	if(!empty($cityName))
     	{
-	    	$response = $this->callGharpayAPI('getPincodesInCity?cityName='.$cityName);	
+	    	$response = $this->callGharpayAPI('getPincodesInCity?cityName='.rawurlencode($cityName));	
 	    	if(!isset($response['getPincodesInCityResponse']['errorCode']))
 	    	{
 	    		return $response['getPincodesInCityResponse']['pincode'];
@@ -470,7 +470,7 @@ class GharpayAPI
 		$cityName=trim($cityName);
 		if(!empty($cityName))
 		{
-	    	$response = $this->callGharpayAPI('isCityPresent?cityName='.$cityName);
+	    	$response = $this->callGharpayAPI('isCityPresent?cityName='.rawurlencode($cityName));
 	    	if(!isset($response['isCityPresentResponse']['errorCode']))
 	    	{
 	    		return $response['isCityPresentResponse']['result']=='true' ? TRUE : FALSE;

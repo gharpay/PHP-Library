@@ -24,7 +24,7 @@ class CreateOrderTest extends PHPUnit_Framework_TestCase
 		$this->oDetails = array(
 				'pincode'=>'400057',
 				'clientOrderID'=>'6100002',
-				'deliveryDate'=>'30-03-2012',
+				'deliveryDate'=>'30-12-2012',
 				'orderAmount'=>'15999'
 		);
 	

@@ -18,6 +18,11 @@ class GetPincodesInCityTest extends PHPUnit_Framework_TestCase {
 		$response=$this->gpapi->getPincodesInCity('Mumbai');
 		$this->assertArrayHasKey('0',$response);
 	}
+	public function testOKArgWithSpace()
+	{
+		$response=$this->gpapi->getPincodesInCity('Navi Mumbai');
+		$this->assertArrayHasKey('0',$response);
+	}
 	public function  testNotOk()
 	{
 		$this->setExpectedException("GharpayAPIException");
