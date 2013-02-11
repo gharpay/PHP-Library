@@ -7,8 +7,8 @@ Using Gharpay PHP LIbrary is easy. Follow the simple 5 steps.
 
 1. Add username, password and webservice URL in config.php file as given below.
 <pre><code>   
-define("USERNAME","your_username"); // add your username here; 
-define("PASSWORD","your_password"); //add password here; 
+define("USERNAME","your_username"); // add your username of API/API Key here; 
+define("PASSWORD","your_password"); //add password of API/API Secret here; 
 define("URL","http://services.gharpay.in"); //Your web service URL goes here;
 define("ERROR_ON",FALSE); //if you are developing app turn this to TRUE to enable error reporting.
 </code></pre>
