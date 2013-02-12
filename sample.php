@@ -6,13 +6,13 @@ require_once 'GharpayAPI.php';
             'contactNo'=>'8888888888',
             'firstName'=>'Khaja',
             'lastName'=>'Naquiuddin',
-            'email'=>'khaja@gharpay.in'
+            'email'=>'tech@gharpay.in'
         );
         
 	$orderDetails = array(
             'pincode'=>'400057',
             'clientOrderID'=>'6100002',
-            'deliveryDate'=>'30-03-2012',
+            'deliveryDate'=>'28-2-2013',
             'orderAmount'=>'15999'
         );
         
@@ -28,11 +28,23 @@ require_once 'GharpayAPI.php';
               'unitCost'=>1134,
 	      'productDescription'=>'Sony E series'
             );
-	$parameters[0]=array(
-		'name'=>'InvoiceURL',
-		'value'=>'http://www.gharpay.in'	
-	    );
 	
-	   $result = $gpapi->createOrder($customerDetails, $orderDetails, $productDetails, $parameters);
-           var_dump($result);
+	// $result = $gpapi->createOrder($customerDetails, $orderDetails, $productDetails);
+  $result = $gpapi->viewOrderStatus("GW-264-0019960-845");
+  var_dump($result);
+
+
+
+  /*  Optionally If you want to pass a custom invoice or other extra parameters to us then please send it to us using these lines of code.
+      Donot add these lines of code if you don't have to pass custom invoice or other additional parameters.
+  */
+
+  $parameters[0]=array(
+    'name'=>'InvoiceURL',
+    'value'=>'http://www.gharpay.in'  
+      );
+
+  // $result = $gpapi->createOrder($customerDetails, $orderDetails, $productDetails);
+  var_dump($result);
+
 ?>
